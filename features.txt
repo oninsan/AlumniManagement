@@ -1,0 +1,16 @@
+moregister ang alumni nya mofill in sila sa ilang info like name, course, yr graduated, etc then human kay work details nila if nag work na, nya maka view sila if naay events.. sa admin nga side kay igo ra maka view sa info sa mga alumni, nya maka add silag events, nya sa reports kay makita ang percentage kada course if na align ang work sa course gi graduate'tan
+
+alumni table:
+first_name: varchar,
+last_name:varchar,
+course_graduated:varchar,
+year_graduated:year,
+working_status:boolean,
+work:varchar,
+
+events table:
+event_name:varchar,
+attendees_list:
+
+communications table:
+announcement:
