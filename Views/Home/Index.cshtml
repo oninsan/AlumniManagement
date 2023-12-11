@@ -4,6 +4,7 @@
 }
 
 @Html.Partial("Partials/AnnouncementItem")
+@Html.Partial("Partials/EventItem")
 
 <div class="row justify-content-center">
     <div class="col-lg-4 col-md-12">
@@ -184,14 +185,14 @@
             </div>
             <div class="card-body">
                 <ul class="chatonline">
-                    <li>
+                    @* <li>
                         <a href="javascript:void(0)" class="d-flex align-items-center">
                             <div class="ms-2">
                                 <h4 class="text-dark">Varun Dhavan 
                                     <small class="d-block text-success d-block fs-4">Date</small></h4>
                             </div>
                         </a>
-                    </li>
+                    </li> *@
                     @* <li>
                         <div class="call-chat">
                             <button class="btn btn-success text-white btn-circle btn" type="button">
@@ -310,6 +311,29 @@
             })
         }
 
+        // Get at least 5 events
+        const GetEvents = () => {
+            $.ajax({
+                method:"GET",
+                url:"/api/client/getevents",
+                success:res=>{
+                    const container = $(".chatonline")
+                    const eventItemTemp = $("#event-item-temp").html()
+                    console.log(res)
+                    res.slice(0,5).forEach(item=>{
+                        const eventItem = $(eventItemTemp).clone();
+                        eventItem.find("h4").text(`${item.eventName}`)
+                        eventItem.find(".event-date").text(`${item.eventDate}`)
+                        container.append(eventItem)
+                        console.log(item.eventName)
+                    })
+                },
+                error:err=>{
+                    console.error(err)
+                }
+            })
+        }
+
         // Total alumni
         const GetTotalAlumni = () => {
             $.ajax({
@@ -326,5 +350,6 @@
 
         GetTotalAlumni()
         GetAnnouncements()
+        GetEvents()
     })
 </script>

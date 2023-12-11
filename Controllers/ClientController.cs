@@ -25,6 +25,11 @@ namespace AlumniManagement.Controllers
             return new OkObjectResult( await _context.Announcements.Take(5).OrderByDescending(a=>a.Id).ToListAsync());
         }
 
+        public async Task<IActionResult> GetEvents()
+        {
+            return new OkObjectResult( await _context.Events.Take(5).OrderByDescending(a=>a.Id).ToListAsync() );
+        }
+
         public async Task<IActionResult> GetTotalEntityItems()
         {
             var total_items = new Dictionary<string, int> {
