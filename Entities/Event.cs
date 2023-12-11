@@ -13,7 +13,7 @@ public partial class Event
 
     public DateOnly EventDate { get; set; }
 
-    public DateOnly EventTime { get; set; }
+    public TimeOnly EventTime { get; set; }
 
     public string AttendeesList { get; set; } = null!;
 }

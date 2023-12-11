@@ -19,7 +19,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="AnnouncementDescription" class="control-label"></label>
-                <input asp-for="AnnouncementDescription" class="form-control" />
+                <input asp-for="AnnouncementDescription" type="textarea" class="form-control"/>
                 <span asp-validation-for="AnnouncementDescription" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -32,6 +32,9 @@
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
+<footer class="footer text-center"> 2021 © Alumni Management brought to you by <a
+    href="https://www.wrappixel.com/">wrappixel.com</a>
+</footer>  
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

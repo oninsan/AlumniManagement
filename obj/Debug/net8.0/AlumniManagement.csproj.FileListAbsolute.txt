@@ -259,6 +259,7 @@ C:\Users\Oninsama\Documents\Freelances\AlumniManagement\obj\Debug\net8.0\AlumniM
 C:\Users\Oninsama\Documents\Freelances\AlumniManagement\obj\Debug\net8.0\AlumniManagement.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\Oninsama\Documents\Freelances\AlumniManagement\obj\Debug\net8.0\AlumniManagement.RazorAssemblyInfo.cache
 C:\Users\Oninsama\Documents\Freelances\AlumniManagement\obj\Debug\net8.0\AlumniManagement.RazorAssemblyInfo.cs
+C:\Users\Oninsama\Documents\Freelances\AlumniManagement\obj\Debug\net8.0\AlumniManagement.sourcelink.json
 C:\Users\Oninsama\Documents\Freelances\AlumniManagement\obj\Debug\net8.0\staticwebassets.build.json
 C:\Users\Oninsama\Documents\Freelances\AlumniManagement\obj\Debug\net8.0\staticwebassets.development.json
 C:\Users\Oninsama\Documents\Freelances\AlumniManagement\obj\Debug\net8.0\staticwebassets\msbuild.AlumniManagement.Microsoft.AspNetCore.StaticWebAssets.props

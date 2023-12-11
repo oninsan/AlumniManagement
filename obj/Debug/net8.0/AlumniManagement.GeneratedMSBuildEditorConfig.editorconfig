@@ -9,99 +9,107 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = AlumniManagement
 build_property.RootNamespace = AlumniManagement
-build_property.ProjectDir = C:\Users\Oninsama\Documents\Freelances\AlumniManagement\
+build_property.ProjectDir = c:\Users\Oninsama\Documents\Freelances\AlumniManagement\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\Oninsama\Documents\Freelances\AlumniManagement
+build_property.MSBuildProjectDirectory = c:\Users\Oninsama\Documents\Freelances\AlumniManagement
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/Oninsama/Documents/Freelances/AlumniManagement/Views/Alumni/Create.cshtml]
+[c:/Users/Oninsama/Documents/Freelances/AlumniManagement/Views/Alumni/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWx1bW5pXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Oninsama/Documents/Freelances/AlumniManagement/Views/Alumni/Delete.cshtml]
+[c:/Users/Oninsama/Documents/Freelances/AlumniManagement/Views/Alumni/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWx1bW5pXERlbGV0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Oninsama/Documents/Freelances/AlumniManagement/Views/Alumni/Details.cshtml]
+[c:/Users/Oninsama/Documents/Freelances/AlumniManagement/Views/Alumni/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWx1bW5pXERldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Oninsama/Documents/Freelances/AlumniManagement/Views/Alumni/Edit.cshtml]
+[c:/Users/Oninsama/Documents/Freelances/AlumniManagement/Views/Alumni/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWx1bW5pXEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Oninsama/Documents/Freelances/AlumniManagement/Views/Alumni/Index.cshtml]
+[c:/Users/Oninsama/Documents/Freelances/AlumniManagement/Views/Alumni/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWx1bW5pXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Oninsama/Documents/Freelances/AlumniManagement/Views/Announcement/Create.cshtml]
+[c:/Users/Oninsama/Documents/Freelances/AlumniManagement/Views/Announcement/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQW5ub3VuY2VtZW50XENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Oninsama/Documents/Freelances/AlumniManagement/Views/Announcement/Delete.cshtml]
+[c:/Users/Oninsama/Documents/Freelances/AlumniManagement/Views/Announcement/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQW5ub3VuY2VtZW50XERlbGV0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Oninsama/Documents/Freelances/AlumniManagement/Views/Announcement/Details.cshtml]
+[c:/Users/Oninsama/Documents/Freelances/AlumniManagement/Views/Announcement/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQW5ub3VuY2VtZW50XERldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Oninsama/Documents/Freelances/AlumniManagement/Views/Announcement/Edit.cshtml]
+[c:/Users/Oninsama/Documents/Freelances/AlumniManagement/Views/Announcement/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQW5ub3VuY2VtZW50XEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Oninsama/Documents/Freelances/AlumniManagement/Views/Announcement/Index.cshtml]
+[c:/Users/Oninsama/Documents/Freelances/AlumniManagement/Views/Announcement/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQW5ub3VuY2VtZW50XEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Oninsama/Documents/Freelances/AlumniManagement/Views/Event/Create.cshtml]
+[c:/Users/Oninsama/Documents/Freelances/AlumniManagement/Views/Event/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXZlbnRcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Oninsama/Documents/Freelances/AlumniManagement/Views/Event/Delete.cshtml]
+[c:/Users/Oninsama/Documents/Freelances/AlumniManagement/Views/Event/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXZlbnRcRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Oninsama/Documents/Freelances/AlumniManagement/Views/Event/Details.cshtml]
+[c:/Users/Oninsama/Documents/Freelances/AlumniManagement/Views/Event/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXZlbnRcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Oninsama/Documents/Freelances/AlumniManagement/Views/Event/Edit.cshtml]
+[c:/Users/Oninsama/Documents/Freelances/AlumniManagement/Views/Event/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXZlbnRcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Oninsama/Documents/Freelances/AlumniManagement/Views/Event/Index.cshtml]
+[c:/Users/Oninsama/Documents/Freelances/AlumniManagement/Views/Event/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXZlbnRcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Oninsama/Documents/Freelances/AlumniManagement/Views/Home/Index.cshtml]
+[c:/Users/Oninsama/Documents/Freelances/AlumniManagement/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Oninsama/Documents/Freelances/AlumniManagement/Views/Home/Privacy.cshtml]
+[c:/Users/Oninsama/Documents/Freelances/AlumniManagement/Views/Home/Partials/AnnouncementItem.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQYXJ0aWFsc1xBbm5vdW5jZW1lbnRJdGVtLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[c:/Users/Oninsama/Documents/Freelances/AlumniManagement/Views/Home/Partials/EventItem.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQYXJ0aWFsc1xFdmVudEl0ZW0uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[c:/Users/Oninsama/Documents/Freelances/AlumniManagement/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Oninsama/Documents/Freelances/AlumniManagement/Views/Shared/Error.cshtml]
+[c:/Users/Oninsama/Documents/Freelances/AlumniManagement/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Oninsama/Documents/Freelances/AlumniManagement/Views/Shared/_ValidationScriptsPartial.cshtml]
+[c:/Users/Oninsama/Documents/Freelances/AlumniManagement/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Oninsama/Documents/Freelances/AlumniManagement/Views/_ViewImports.cshtml]
+[c:/Users/Oninsama/Documents/Freelances/AlumniManagement/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Oninsama/Documents/Freelances/AlumniManagement/Views/_ViewStart.cshtml]
+[c:/Users/Oninsama/Documents/Freelances/AlumniManagement/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Oninsama/Documents/Freelances/AlumniManagement/Views/Shared/_Layout.cshtml]
+[c:/Users/Oninsama/Documents/Freelances/AlumniManagement/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-yteh2bw9ms

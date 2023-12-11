@@ -10,7 +10,11 @@ work:varchar,
 
 events table:
 event_name:varchar,
+event_description,
+event_date:date
 attendees_list:
 
+
 communications table:
-announcement:
+announcement_name:varchar,
+announcement_description:varchar,

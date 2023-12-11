@@ -100,7 +100,9 @@ public partial class AlumniManagementContext : DbContext
             entity.Property(e => e.EventName)
                 .HasMaxLength(50)
                 .HasColumnName("event_name");
-            entity.Property(e => e.EventTime).HasColumnName("event_time");
+            entity.Property(e => e.EventTime)
+                .HasColumnType("time")
+                .HasColumnName("event_time");
         });
 
         OnModelCreatingPartial(modelBuilder);
