@@ -1,0 +1,87 @@
+<style>
+        * {
+            margin: 0 !important;
+            padding: 0 !important;
+            border: 0 !important;
+            @* font-size: 100% !important;
+            font: inherit !important;
+            vertical-align: baseline !important; *@
+        }
+
+        body {
+            background-color: #f8f9fa !important;
+            font-family: 'Courier New', Courier, 'Montserrat' !important;
+        }
+
+        .login-container {
+            max-width: 400px !important;
+            margin: auto !important;
+            margin-top: 150px!important;
+        }
+
+        .login-form {
+            background-color: #ffffff !important;
+            padding: 20px !important;
+            border-radius: 8px !important;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1) !important;
+        }
+
+        .login-form h2 {
+            text-align: center !important;
+            margin-bottom: 30px !important;
+        }
+
+        .login-form input[type="text"],
+        .login-form input[type="password"] {
+            width: 100% !important;
+            padding: 10px !important;
+            margin-bottom: 15px !important;
+            border: 1px solid #ced4da !important;
+            border-radius: 4px !important;
+        }
+
+        .login-form button {
+            width: 100% !important;
+            padding: 10px !important;
+            background-color: #007bff !important;
+            color: #ffffff !important;
+            border: none !important;
+            border-radius: 4px !important;
+            cursor: pointer !important;
+        }
+
+        .login-form button:hover {
+            background-color: #0056b3 !important;
+        }
+
+        header, aside, .header-title{
+            display: none !important;
+        }
+
+        .container-fluid{
+            width:100% !important;
+        }
+
+        .container-fluid{
+            @* min-width: none !important; *@
+            @* margin-right: left !important; *@
+            background-color: #f8f9fa !important    ;
+        }
+    </style>
+<div class="container login-container">
+    <div class="login-form">
+        <h2>Admin Login</h2>
+        <div>
+            <div class="form-group">
+                <input type="text" class="form-control username" placeholder="Username" required>
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control password" placeholder="Password" required>
+            </div>
+            <button type="submit" class="btn btn-primary submit">Login</button>
+        </div>
+    </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="~/js/login.js"></script>
+

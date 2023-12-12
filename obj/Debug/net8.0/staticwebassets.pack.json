@@ -665,6 +665,10 @@
       "PackagePath": "staticwebassets\\css\\style.min.css"
     },
     {
+      "Id": "C:\\Users\\Oninsama\\Documents\\Freelances\\AlumniManagement\\wwwroot\\css\\user.css",
+      "PackagePath": "staticwebassets\\css\\user.css"
+    },
+    {
       "Id": "C:\\Users\\Oninsama\\Documents\\Freelances\\AlumniManagement\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
     },
