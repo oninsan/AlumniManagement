@@ -299,9 +299,10 @@
                 method:"GET",
                 url:"/api/client/getannouncements",
                 success:res=>{
+                    console.log(res)
                     const container = $(".comment-widgets")
                     const announcementItemTemp = $("#student-item-temp").html();
-                    res.slice(0,3).forEach(item=>{
+                    res.slice(0,3).forEach(item => {
                         const announcementItem = $(announcementItemTemp).clone()
                         announcementItem.find("div>h5").text(`${item.announcementTitle}`)
                         announcementItem.find("div>.desc").text(`${item.announcementDescription}`)

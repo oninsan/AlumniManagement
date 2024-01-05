@@ -22,7 +22,7 @@ namespace AlumniManagement.Controllers
 
         public async Task<IActionResult> GetAnnouncements()
         {
-            return new OkObjectResult( await _context.Announcements.Take(5).OrderByDescending(a=>a.Id).ToListAsync());
+            return new OkObjectResult( await _context.Announcements.OrderByDescending(a=>a.Id).Take(5).ToListAsync());
         }
 
         public async Task<IActionResult> GetAlumniAnnouncements()
@@ -32,7 +32,12 @@ namespace AlumniManagement.Controllers
 
         public async Task<IActionResult> GetEvents()
         {
-            return new OkObjectResult( await _context.Events.Take(5).OrderByDescending(a=>a.Id).ToListAsync() );
+            return new OkObjectResult( await _context.Events.OrderByDescending(a=>a.Id).Take(5).ToListAsync() );
+        }
+
+        public async Task<IActionResult> GetAllEvents()
+        {
+            return new OkObjectResult( await _context.Events.OrderByDescending(i=>i.Id).ToListAsync() );
         }
 
         public async Task<IActionResult> GetTotalEntityItems()
@@ -46,16 +51,50 @@ namespace AlumniManagement.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> UserLogin(String username, String password)
+        public async Task<IActionResult> UserLogin(string username, string password)
         {
             var account = await _context.Alumni
                 .FirstOrDefaultAsync(a=>a.Username == username && 
                                         a.Password == password);
-            if(account ==  null)
+            if(account !=  null)
             {
-                return new BadRequestObjectResult("Wrong username or password!");
+                if(account.Username == "oninsan" && account.Password == "12345")
+                {
+                    return new OkObjectResult(
+                        new Dictionary<string, object>{
+                            { "ID", account.Id },
+                            { "role", "admin" },
+                            { "logged", "true" },
+                            { "firstName", account.FirstName },
+                            { "lastName", account.LastName },
+                            { "userName", account.Username },
+                            { "password", account.Password },
+                            { "courseGraduated", account.CourseGraduated },
+                            { "yearGraduated", account.YearGraduated },
+                            { "workingStatus", account.WorkingStatus },
+                            { "currentWork", account.CurrentWork }
+                        });
+                }
+                return new OkObjectResult(
+                    new Dictionary<string, object>{
+                        { "ID", account.Id },
+                        { "role", "user" },
+                        { "logged", "true" },
+                        { "firstName", account.FirstName },
+                        { "lastName", account.LastName },
+                        { "userName", account.Username },
+                        { "password", account.Password },
+                        { "courseGraduated", account.CourseGraduated },
+                        { "yearGraduated", account.YearGraduated },
+                        { "workingStatus", account.WorkingStatus },
+                        { "currentWork", account.CurrentWork }
+                    });
             }
-            return new OkObjectResult("Successfully logged in");
+            return new OkObjectResult(
+                new Dictionary<string, string>{
+                    { "role", "none" },
+                    { "logged", "false" }
+                });
         }
     }
 }

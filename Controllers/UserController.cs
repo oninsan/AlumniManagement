@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using AlumniManagement.Entities;
+using Microsoft.AspNetCore.Mvc.ViewEngines;
 
 namespace AlumniManagement.Controllers
 {
@@ -18,6 +19,11 @@ namespace AlumniManagement.Controllers
         }
 
         public async Task<IActionResult> Index()
+        {
+            return View();
+        }
+
+        public async Task<IActionResult> Events()
         {
             return View();
         }

@@ -3,7 +3,7 @@
 }
 
 <link rel="stylesheet" href="~/css/user.css">
-@Html.Partial("Partials/AnnouncementItem")
+@Html.Partial("Partials/EventItem")
 
 <div class="container main-container">
     <div class="row">
@@ -17,14 +17,14 @@
                                 <img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt>
                             </div>
                             <div class="profile-header-info">
-                                <h4 class="m-t-10 m-b-5 name"></h4></h4>
+                                <h4 class="m-t-10 m-b-5 name">Benry Olidiana</h4>
                                 <p class="m-b-10 job">UXUI + Frontend Developer</p>
                                 <a href="#" class="btn btn-sm btn-info mb-2">Edit Profile</a>
                             </div>
                         </div>
                         <ul class="profile-header-tab nav nav-tabs">
-                            <li class="nav-item"><a asp-controller="User" asp-action="Events" class="nav-link_">Events</a></li>
-                            <li class="nav-item"><a asp-controller="User" asp-action="Index" class="nav-link_ active show">Announcements</a></li>
+                            <li class="nav-item"><a asp-controller="User" asp-action="Events" class="nav-link_ active show">Events</a></li>
+                            <li class="nav-item"><a asp-controller="User" asp-action="Index" class="nav-link_">Announcements</a></li>
                         </ul>
                     </div>
                 </div>
@@ -124,14 +124,14 @@
                                     <div class="timeline-body">
                                         <div class="timeline-header">
                                             <span class="userimage"><img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt></span>
-                                            <span class="username">Sean Ngu</span>
+                                            <span class="username">Alumni Admin</span>
                                             <span class="pull-right text-muted">1,282 Views</span>
                                         </div>
                                         <div class="timeline-content">
                                             <p class="lead">
-                                                <i class="fa fa-quote-left fa-fw pull-left"></i>
+                                                <i class="fa-fw"></i>
     Quisque sed varius nisl. Nulla facilisi. Phasellus consequat sapien sit amet nibh molestie placerat. Donec nulla quam, ullamcorper ut velit vitae, lobortis condimentum magna. Suspendisse mollis in sem vel mollis.
-                                                <i class="fa fa-quote-right fa-fw pull-right"></i>
+                                                <i class="fa-fw pull-right"></i>
                                             </p>
                                         </div>
                                         <div class="timeline-footer">
@@ -170,18 +170,21 @@
 
         $.ajax({
             method:"GET",
-            url:"/api/client/getalumniannouncements",
+            url:"/api/client/getallevents",
             success:res=>{
                 console.log(res)
                 const container = $(".timeline")
-                const announcementsTemp = $("#a__item").html()
+                const eventsTemp = $("#e__item").html()
                 res.forEach(item=>{
                     console.log(item)
-                    const annnouncementItem = $(announcementsTemp).clone()
-                    annnouncementItem.find(".template-title").text(item.announcementTitle)
-                    annnouncementItem.find(".a__details").text(item.announcementDescription)
-                    container.append(annnouncementItem)
+                    const eventItem = $(eventsTemp).clone()
+                    let date = new Date(item.eventDate)
+                    let options = { year: 'numeric', month: 'long', day: 'numeric' }
+                    let formattedDate = new Intl.DateTimeFormat('en-US', options).format(date)
+                    eventItem.find(".timeline-content>p").html(`<b>Event:</b> ${item.eventName}<br><b>When:</b> ${formattedDate}<br><b>Attendees</b>: ${item.attendeesList}<br><b>Description:</b> ${item.eventDescription}`)
+                    container.append(eventItem)
                 })
+
             },
             error:err=>{
                 console.log(res)
