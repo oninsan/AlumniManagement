@@ -91,6 +91,7 @@
     </div>
 </div>
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script>
     $("#inputUsername").val(sessionStorage.getItem("userName"))
     $("#inputFirstName").val(sessionStorage.getItem("firstName"))
@@ -117,6 +118,48 @@
                 password:$("#inputPassword").val(),
                 workingstatus:$("#inputWorkingStatus").prop("checked"),
                 currentwork:$("inputWork").val()
+            },
+            success:res=>{
+                sessionStorage.setItem("userName", res.username)
+                sessionStorage.setItem("firstName", res.firstName)
+                sessionStorage.setItem("lastName", res.lastName)
+                sessionStorage.setItem("courseGraduated", res.courseGraduated)
+                sessionStorage.setItem("yearGraduated", res.yearGraduated)
+                sessionStorage.setItem("password", res.password)
+                sessionStorage.setItem("workingStatus", res.workingStatus)
+                sessionStorage.setItem("currentWork", res.currentWork)
+
+                @* Swal.fire({
+                        icon: 'success',
+                        title: 'Profile update,
+                        text: "Made some changes to your profile",
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3500,
+                        customClass: {
+                        container: 'swal-container',
+                        popup: 'swal-popup',
+                        icon: 'swal-icon',
+                        title: 'swal-title',
+                        text: 'swal-text',
+                    },
+                    showClass: {
+                        popup: 'animate__animated animate__fadeInRight',
+                    },
+                    hideClass: {
+                        popup: 'animate__animated animate__fadeOutRight',
+                    },
+                }) *@
+                Swal.fire({
+                    icon:"success",
+                    title:"Profile update",
+                    text:"Made some changes to your profile"
+                })
+                console.log(res)
+            },
+            error:err=>{
+                console.log(err)
             }
         })
     })
