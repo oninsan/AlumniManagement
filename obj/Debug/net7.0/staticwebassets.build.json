@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "THcZnfuP94+6+iRapLAztt0We9PMw9a3uYYt7s/T9pE=",
+  "Hash": "LeS/9Sjufu2T1IQFbw3r9n0Fd1EjIAUgSxWwulTloB4=",
   "Source": "AlumniManagement",
   "BasePath": "_content/AlumniManagement",
   "Mode": "Default",
@@ -3131,6 +3131,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\icons\\weather-icons\\sass\\weather-icons.scss"
+    },
+    {
+      "Identity": "C:\\Users\\Oninsama\\Documents\\Freelances\\AlumniManagement\\wwwroot\\css\\profile.css",
+      "SourceId": "AlumniManagement",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Oninsama\\Documents\\Freelances\\AlumniManagement\\wwwroot\\",
+      "BasePath": "_content/AlumniManagement",
+      "RelativePath": "css/profile.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\profile.css"
     },
     {
       "Identity": "C:\\Users\\Oninsama\\Documents\\Freelances\\AlumniManagement\\wwwroot\\css\\site.css",

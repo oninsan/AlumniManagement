@@ -653,6 +653,10 @@
       "PackagePath": "staticwebassets\\css\\icons\\weather-icons\\sass\\weather-icons.scss"
     },
     {
+      "Id": "C:\\Users\\Oninsama\\Documents\\Freelances\\AlumniManagement\\wwwroot\\css\\profile.css",
+      "PackagePath": "staticwebassets\\css\\profile.css"
+    },
+    {
       "Id": "C:\\Users\\Oninsama\\Documents\\Freelances\\AlumniManagement\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },

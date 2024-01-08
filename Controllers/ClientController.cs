@@ -124,5 +124,26 @@ namespace AlumniManagement.Controllers
                 }
             );
         }
+
+        // Edit the alumni profile
+        [HttpPost]
+        public async Task<IActionResult> EditProfile(int id, string username, string firstname, string lastname, string coursename, string yeargraduated, string password, bool workingstatus, string currentwork)
+        {
+            var alumnus = _context.Alumni.FirstOrDefault(a=>a.Id==id);
+            if(alumnus != null)
+            {
+                alumnus.Username = username;
+                alumnus.FirstName = firstname;
+                alumnus.LastName = lastname;
+                alumnus.CourseGraduated = coursename;
+                alumnus.YearGraduated = short.Parse(yeargraduated);
+                alumnus.Password = password;
+                alumnus.WorkingStatus = workingstatus;
+                alumnus.CurrentWork = currentwork;
+                await _context.SaveChangesAsync();
+                return new JsonResult(alumnus);
+            }
+            return new BadRequestObjectResult("Alumnus not found!");
+        }
     }
 }

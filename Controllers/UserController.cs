@@ -27,5 +27,9 @@ namespace AlumniManagement.Controllers
         {
             return View();
         }
+        public IActionResult Profile()
+        {
+            return View();
+        }
     }
 }
