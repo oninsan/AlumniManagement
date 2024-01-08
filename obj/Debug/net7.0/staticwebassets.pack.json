@@ -673,6 +673,26 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "C:\\Users\\Oninsama\\Documents\\Freelances\\AlumniManagement\\wwwroot\\img\\ccje_logo.jpg",
+      "PackagePath": "staticwebassets\\img\\ccje_logo.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Oninsama\\Documents\\Freelances\\AlumniManagement\\wwwroot\\img\\ccs_logo.jpg",
+      "PackagePath": "staticwebassets\\img\\ccs_logo.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Oninsama\\Documents\\Freelances\\AlumniManagement\\wwwroot\\img\\commerce_logo.png",
+      "PackagePath": "staticwebassets\\img\\commerce_logo.png"
+    },
+    {
+      "Id": "C:\\Users\\Oninsama\\Documents\\Freelances\\AlumniManagement\\wwwroot\\img\\cte_logo.jpg",
+      "PackagePath": "staticwebassets\\img\\cte_logo.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Oninsama\\Documents\\Freelances\\AlumniManagement\\wwwroot\\img\\psych_logo.png",
+      "PackagePath": "staticwebassets\\img\\psych_logo.png"
+    },
+    {
       "Id": "C:\\Users\\Oninsama\\Documents\\Freelances\\AlumniManagement\\wwwroot\\js\\app-style-switcher.js",
       "PackagePath": "staticwebassets\\js\\app-style-switcher.js"
     },

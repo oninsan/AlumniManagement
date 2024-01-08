@@ -96,5 +96,33 @@ namespace AlumniManagement.Controllers
                     { "logged", "false" }
                 });
         }
+
+        public IActionResult GetEmploymentRate()
+        {
+            return new JsonResult(
+                new Dictionary<string, object>{
+                    {"ccs", new Dictionary<string, object>{
+                        { "population", _context.Alumni.Where(c=>c.CourseGraduated == "BSIT").Count() },
+                        { "employed", _context.Alumni.Where(c=>c.CourseGraduated == "BSIT" && c.WorkingStatus == true).Count() }
+                    }},
+                    {"ccje", new Dictionary<string,object>{
+                        { "population",_context.Alumni.Where(c=>c.CourseGraduated == "BSCRIM").Count()},
+                        { "employed", _context.Alumni.Where(c=>c.CourseGraduated == "BSCRIM" && c.WorkingStatus == true).Count() }
+                    }},
+                    {"cte", new Dictionary<string, object>{
+                        { "population",_context.Alumni.Where(c=>c.CourseGraduated == "BSED").Count() },
+                        { "employed", _context.Alumni.Where(c=>c.CourseGraduated == "BSED" && c.WorkingStatus == true).Count() }
+                    }},
+                    {"psych", new Dictionary<string, object>{
+                        { "population",_context.Alumni.Where(c=>c.CourseGraduated == "PSYCHOLOGY").Count() },
+                        { "employed", _context.Alumni.Where(c=>c.CourseGraduated == "PSYCHOLOGY" && c.WorkingStatus == true).Count() }
+                    }},
+                    {"coc", new Dictionary<string, object>{
+                        { "population",_context.Alumni.Where(c=>c.CourseGraduated == "COMMERCE").Count() },
+                        { "employed", _context.Alumni.Where(c=>c.CourseGraduated == "COMMERCE" && c.WorkingStatus == true).Count() }
+                    }},
+                }
+            );
+        }
     }
 }

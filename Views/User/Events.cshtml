@@ -184,7 +184,6 @@
                     eventItem.find(".timeline-content>p").html(`<b>Event:</b> ${item.eventName}<br><b>When:</b> ${formattedDate}<br><b>Attendees</b>: ${item.attendeesList}<br><b>Description:</b> ${item.eventDescription}`)
                     container.append(eventItem)
                 })
-
             },
             error:err=>{
                 console.log(res)
