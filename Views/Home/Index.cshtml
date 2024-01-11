@@ -6,6 +6,13 @@
 @Html.Partial("Partials/AnnouncementItem")
 @Html.Partial("Partials/EventItem")
 
+<style>
+    input[type='checkbox'] { 
+        width: 1.5rem !important;
+        height: 1.5rem !important;
+    }
+</style>
+
 <div class="row justify-content-center">
     <div class="col-lg-4 col-md-12">
         <div class="white-box analytics-info">
@@ -168,9 +175,9 @@
                                     @Html.DisplayFor(modelItem => item.CurrentWork)
                                 </td>
                                 <td>
-                                    <a asp-action="Edit" asp-controller="Alumni" asp-route-id="@item.Id">Edit</a> |
-                                    <a asp-action="Details" asp-controller="Alumni" asp-route-id="@item.Id">Details</a> |
-                                    <a asp-action="Delete" asp-controller="Alumni" asp-route-id="@item.Id">Delete</a>
+                                    <a asp-action="Details" asp-controller="Alumni" class="btn btn-primary" asp-route-id="@item.Id">Details</a>
+                                    <a asp-action="Edit" asp-controller="Alumni" class="btn btn-success" asp-route-id="@item.Id">Edit</a>
+                                    @* <a asp-action="Delete" asp-controller="Alumni" asp-route-id="@item.Id">Delete</a> *@
                                 </td>
                             </tr>
                         }
@@ -275,11 +282,11 @@
                 method:"GET",
                 url:"/api/client/getemploymentrate",
                 success:res=>{
-                    const ccsEmploymentRate = `${(res.ccs.employed/res.ccs.population)*100}%`
-                    const ccjeEmploymentRate = `${(res.ccje.employed/res.ccje.population)*100}%`
-                    const cteEmploymentRate = `${(res.cte.employed/res.cte.population)*100}%`
-                    const psychEmploymentRate = `${(res.psych.employed/res.psych.population)*100}%`
-                    const cocEmploymentRate = `${(res.coc.employed/res.coc.population)*100}%`
+                    const ccsEmploymentRate = `${Math.round((res.ccs.employed/res.ccs.population)*100)}%`
+                    const ccjeEmploymentRate = `${Math.round((res.ccje.employed/res.ccje.population)*100)}%`
+                    const cteEmploymentRate = `${Math.round((res.cte.employed/res.cte.population)*100)}%`
+                    const psychEmploymentRate = `${Math.round((res.psych.employed/res.psych.population)*100)}%`
+                    const cocEmploymentRate = `${Math.round((res.coc.employed/res.coc.population)*100)}%`
 
                     $(".ccs-employment").text(ccsEmploymentRate)
                     $(".cte-employment").text(cteEmploymentRate)

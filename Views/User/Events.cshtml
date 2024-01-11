@@ -168,6 +168,7 @@
             location.href ="/"
         }
 
+        // get all events
         $.ajax({
             method:"GET",
             url:"/api/client/getallevents",
@@ -176,19 +177,148 @@
                 const container = $(".timeline")
                 const eventsTemp = $("#e__item").html()
                 res.forEach(item=>{
-                    console.log(item)
+                    @* console.log(item) *@
                     const eventItem = $(eventsTemp).clone()
                     let date = new Date(item.eventDate)
                     let options = { year: 'numeric', month: 'long', day: 'numeric' }
                     let formattedDate = new Intl.DateTimeFormat('en-US', options).format(date)
                     eventItem.find(".timeline-content>p").html(`<b>Event:</b> ${item.eventName}<br><b>When:</b> ${formattedDate}<br><b>Attendees</b>: ${item.attendeesList}<br><b>Description:</b> ${item.eventDescription}`)
+                    eventItem.find("button").attr("id",`add-comment-${item.id}`)
+                    eventItem.find("input").attr("id",`comment-${item.id}`)
+                    eventItem.find(".total-comments").attr("id",`total-comments-${item.id}`)
+                    eventItem.find(".like").attr("id", `like-${item.id}`)
+                    eventItem.find(".likes-total").attr("id",`likes-total-${item.id}`)
+
                     container.append(eventItem)
+                    
+                    // change the like status
+                    getLikeStatus(item.id)
+                    .then(status => {
+                        // change the like color
+                        status == true?$(`#like-${item.id}`).addClass("text-primary"):$(`#like-${item.id}`).removeClass("text-primary")
+                    })
+                    .catch(err => {
+                        console.log(err);
+                    });
+
+                    // get total likes
+                    $.ajax({
+                        method: "GET",
+                        url:"/api/client/counteventlikes",
+                        data:{
+                            eventid: item.id
+                        },
+                        success:res=>{
+                            $(`#likes-total-${item.id}`).text(res)
+                        }
+                    })
+
+                    // add a comment
+                    $(`#add-comment-${item.id}`).click(e=>{
+                        e.preventDefault()
+                        @* console.log($(`#comment-${item.id}`).val()) *@
+
+                        const comment = {
+                            UserId: parseInt(sessionStorage.getItem("ID")),
+                            EventId: item.id,
+                            Comment: $(`#comment-${item.id}`).val()
+                        }
+
+                        // save the comment to the database
+                        $.ajax({
+                            method:"POST",
+                            url:"/api/client/addeventcomment",
+                            data:{
+                                eventComment: comment
+                            },
+                            success:res=>{
+                                console.log(res)
+                            },
+                            error:err=>{
+                                console.log(err)
+                            }
+                        })
+                    })
+
+                    // get the number of comments for each event
+                    $.ajax({
+                        method:"GET",
+                        url:"/api/client/counteventcomments",
+                        data:{
+                            eventid:item.id
+                        },
+                        success:res=>{
+                            $(`#total-comments-${item.id}`).text(`${res} comments`)
+                            @* console.log(res) *@
+                        },
+                        error:err=>{
+                            console.log(err)
+                        }
+                    })
+
+                    // add like
+                    $(`#like-${item.id}`).click(e=>{
+                        e.preventDefault()
+                        console.log(item.id)
+                        const like = {
+                            UserId: parseInt(sessionStorage.getItem("ID")),
+                            EventId: item.id,
+                            Status: true
+                        }
+                        // add like
+                        $.ajax({
+                            method:"POST",
+                            url:"/api/client/addeventlike",
+                            data:{
+                                eventLike:like
+                            },
+                            success:res=>{
+                                getLikeStatus(item.id)
+                                .then(status => {
+                                    // change the like color
+                                    status == true?$(`#like-${item.id}`).addClass("text-primary"):$(`#like-${item.id}`).removeClass("text-primary")
+                                })
+                                .catch(err => {
+                                    console.log(err);
+                                });
+                                console.log(status)
+                            },
+                            error:err=>{
+                                console.log(err)
+                            }
+                        })
+                        console.log("hello")
+                    })
+
                 })
             },
             error:err=>{
                 console.log(res)
             }
         })
+
+        // get like status
+        const getLikeStatus = (eventid) => {
+            // get the like status of the event
+            return new Promise((resolve, reject) => {
+                $.ajax({
+                    method: "GET",
+                    url: "/api/client/getlikestatus",
+                    data: {
+                        userid: parseInt(sessionStorage.getItem("ID")),
+                        eventid: eventid
+                    },
+                    success: res => {
+                        resolve(res)
+                    },
+                    error: err => {
+                        console.log(err)
+                        reject(err)
+                    }
+                })
+            })
+        }
+
 
         // Get the credentials
         $(".name").text(`${sessionStorage.getItem("firstName")} ${sessionStorage.getItem("lastName")}`)

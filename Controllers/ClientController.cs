@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using AlumniManagement.Entities;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System.Security.Cryptography.Pkcs;
+using System.Runtime.CompilerServices;
 
 namespace AlumniManagement.Controllers
 {
@@ -58,7 +60,7 @@ namespace AlumniManagement.Controllers
                                         a.Password == password);
             if(account !=  null)
             {
-                if(account.Username == "oninsan" && account.Password == "12345")
+                if(account.Role == "admin")
                 {
                     return new OkObjectResult(
                         new Dictionary<string, object>{
@@ -72,7 +74,9 @@ namespace AlumniManagement.Controllers
                             { "courseGraduated", account.CourseGraduated },
                             { "yearGraduated", account.YearGraduated },
                             { "workingStatus", account.WorkingStatus },
-                            { "currentWork", account.CurrentWork }
+                            { "currentWork", account.CurrentWork },
+                            { "mobileNumber", account.MobileNumber },
+                            { "email", account.Email }
                         });
                 }
                 return new OkObjectResult(
@@ -87,7 +91,9 @@ namespace AlumniManagement.Controllers
                         { "courseGraduated", account.CourseGraduated },
                         { "yearGraduated", account.YearGraduated },
                         { "workingStatus", account.WorkingStatus },
-                        { "currentWork", account.CurrentWork }
+                        { "currentWork", account.CurrentWork },
+                        { "mobileNumber", account.MobileNumber },
+                        { "email", account.Email }
                     });
             }
             return new OkObjectResult(
@@ -144,6 +150,63 @@ namespace AlumniManagement.Controllers
                 return new JsonResult(alumnus);
             }
             return new BadRequestObjectResult("Alumnus not found!");
+        }
+
+        // add comments in events
+        [HttpPost]
+        public async Task<IActionResult> AddEventComment(EventComment eventComment)
+        {
+            if(eventComment != null)
+            {
+                await _context.EventComments.AddAsync(eventComment);
+                await _context.SaveChangesAsync();
+                return new JsonResult("Successfully added a comment");
+            }
+            return new BadRequestObjectResult("No comment added");
+        }
+
+        // get all event comments
+        public IActionResult CountEventComments(int eventid)
+        {
+            return new JsonResult(_context.EventComments.Where(e=>e.EventId==eventid).Count());
+        }
+
+        // add event like
+        [HttpPost]
+        public async Task<IActionResult> AddEventLike(EventLike eventLike)
+        {
+            if(eventLike != null)
+            {
+                var like = await _context.EventLikes.FirstOrDefaultAsync(l=>l.UserId == eventLike.UserId && l.EventId == eventLike.EventId);
+                if(like == null)
+                {
+                    await _context.EventLikes.AddAsync(eventLike);
+                }
+                else
+                {
+                    like.Status = !like.Status;
+                }
+                await _context.SaveChangesAsync();
+                return new JsonResult("success");
+            }
+            return new BadRequestObjectResult("unsuccessful like");
+        }
+
+        // get like status for each event
+        public async Task<IActionResult> GetLikeStatus(int userid, int eventid)
+        {
+            var like = await _context.EventLikes.FirstOrDefaultAsync(l=>l.UserId==userid && l.EventId==eventid);
+            if(like != null)
+            {
+                return new JsonResult(like.Status);
+            }
+            return new JsonResult(false);
+        }
+
+        // get all event comments
+        public IActionResult CountEventLikes(int eventid)
+        {
+            return new JsonResult(_context.EventLikes.Where(e=>e.EventId==eventid && e.Status==true).Count());
         }
     }
 }

@@ -19,7 +19,13 @@ public partial class AlumniManagementContext : DbContext
 
     public virtual DbSet<Announcement> Announcements { get; set; }
 
+    public virtual DbSet<AnnouncementComment> AnnouncementComments { get; set; }
+
     public virtual DbSet<Event> Events { get; set; }
+
+    public virtual DbSet<EventComment> EventComments { get; set; }
+
+    public virtual DbSet<EventLike> EventLikes { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
@@ -46,15 +52,24 @@ public partial class AlumniManagementContext : DbContext
             entity.Property(e => e.CurrentWork)
                 .HasMaxLength(50)
                 .HasColumnName("current_work");
+            entity.Property(e => e.Email)
+                .HasMaxLength(50)
+                .HasColumnName("email");
             entity.Property(e => e.FirstName)
                 .HasMaxLength(50)
                 .HasColumnName("first_name");
             entity.Property(e => e.LastName)
                 .HasMaxLength(50)
                 .HasColumnName("last_name");
+            entity.Property(e => e.MobileNumber)
+                .HasMaxLength(50)
+                .HasColumnName("mobile_number");
             entity.Property(e => e.Password)
                 .HasMaxLength(50)
                 .HasColumnName("password");
+            entity.Property(e => e.Role)
+                .HasMaxLength(10)
+                .HasColumnName("role");
             entity.Property(e => e.Username)
                 .HasMaxLength(50)
                 .HasColumnName("username");
@@ -81,6 +96,26 @@ public partial class AlumniManagementContext : DbContext
                 .HasColumnName("announcement_title");
         });
 
+        modelBuilder.Entity<AnnouncementComment>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PRIMARY");
+
+            entity.ToTable("announcement_comment");
+
+            entity.Property(e => e.Id)
+                .HasColumnType("int(11)")
+                .HasColumnName("id");
+            entity.Property(e => e.AnnouncementId)
+                .HasColumnType("int(11)")
+                .HasColumnName("announcement_id");
+            entity.Property(e => e.Comment)
+                .HasMaxLength(2000)
+                .HasColumnName("comment");
+            entity.Property(e => e.UserId)
+                .HasColumnType("int(11)")
+                .HasColumnName("user_id");
+        });
+
         modelBuilder.Entity<Event>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PRIMARY");
@@ -103,6 +138,44 @@ public partial class AlumniManagementContext : DbContext
             entity.Property(e => e.EventTime)
                 .HasColumnType("time")
                 .HasColumnName("event_time");
+        });
+
+        modelBuilder.Entity<EventComment>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PRIMARY");
+
+            entity.ToTable("event_comment");
+
+            entity.Property(e => e.Id)
+                .HasColumnType("int(11)")
+                .HasColumnName("id");
+            entity.Property(e => e.Comment)
+                .HasMaxLength(2000)
+                .HasColumnName("comment");
+            entity.Property(e => e.EventId)
+                .HasColumnType("int(11)")
+                .HasColumnName("event_id");
+            entity.Property(e => e.UserId)
+                .HasColumnType("int(11)")
+                .HasColumnName("user_id");
+        });
+
+        modelBuilder.Entity<EventLike>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PRIMARY");
+
+            entity.ToTable("event_like");
+
+            entity.Property(e => e.Id)
+                .HasColumnType("int(11)")
+                .HasColumnName("id");
+            entity.Property(e => e.EventId)
+                .HasColumnType("int(11)")
+                .HasColumnName("event_id");
+            entity.Property(e => e.Status).HasColumnName("status");
+            entity.Property(e => e.UserId)
+                .HasColumnType("int(11)")
+                .HasColumnName("user_id");
         });
 
         OnModelCreatingPartial(modelBuilder);

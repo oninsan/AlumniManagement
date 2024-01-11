@@ -13,7 +13,7 @@
     </nav> *@
     @* <hr class="mt-0 mb-4"> *@
     <div class="row">
-        <div class="col-xl-4">
+        @* <div class="col-xl-4">
             <!-- Profile picture card-->
             <div class="card mb-4 mb-xl-0">
                 <div class="card-header">Profile Picture</div>
@@ -26,8 +26,8 @@
                     <button class="btn btn-primary" type="button">Upload new image</button>
                 </div>
             </div>
-        </div>
-        <div class="col-xl-8">
+        </div> *@
+        <div class="col-xl-7 mx-auto">
             <!-- Account details card-->
             <div class="card mb-4">
                 <div class="card-header">Account Details</div>
@@ -56,12 +56,32 @@
                             <!-- Form Group (organization name)-->
                             <div class="col-md-6">
                                 <label class="small mb-1" for="inputCourseName">Course Graduated</label>
-                                <input class="form-control" id="inputCourseName" type="text" placeholder="Enter your course" value="Start Bootstrap">
+                                @* <input class="form-control" id="inputCourseName" type="text" placeholder="Enter your course" value="Start Bootstrap"> *@
+                                <select id="inputCourseName" class="form-select">
+                                    <option value="">Select Course</option>
+                                    <option value="BSIT">BSIT</option>
+                                    <option value="BSCRIM">BSCRIM</option>
+                                    <option value="BSED">BSIT</option>
+                                    <option value="PSYCHOLOGY">PSYCHOLOGY</option>
+                                    <option value="COMMERCE">COMMERCE</option>
+                                </select>
                             </div>
                             <!-- Form Group (location)-->
                             <div class="col-md-6">
                                 <label class="small mb-1" for="inputYearGraduated">Year Graduated</label>
                                 <input class="form-control" id="inputYearGraduated" type="text" placeholder="Enter graduated year" value="San Francisco, CA">
+                            </div>
+                        </div>
+                        <div class="row gx-3 mb-3">
+                            <!-- Form Group (organization name)-->
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="inputMobile">Mobile Number</label>
+                                <input class="form-control" id="inputMobile" type="number" placeholder="Enter your mobile number">
+                            </div>
+                            <!-- Form Group (location)-->
+                            <div class="col-md-6">
+                                <label class="small mb-1" for="inputEmail">Email Address</label>
+                                <input class="form-control" id="inputEmail" type="text" placeholder="Enter Email...">
                             </div>
                         </div>
                         <!-- Form Group (email address)-->
@@ -101,6 +121,8 @@
     $("#inputPassword").val(sessionStorage.getItem("password"))
     sessionStorage.getItem("workingStatus")==="true"?$("#inputWorkingStatus").prop("checked", true):$("#inputWorkingStatus").prop("checked", false)
     $("#inputWork").val(sessionStorage.getItem("currentWork"))
+    $("#inputMobile").val(sessionStorage.getItem("mobileNumber"))
+    $("#inputEmail").val(sessionStorage.getItem("email"))
 
     console.log($("#inputWorkingStatus").prop("checked"))
     $("#edit-profile").click(e=>{
@@ -117,7 +139,9 @@
                 yeargraduated:$("#inputYearGraduated").val(),
                 password:$("#inputPassword").val(),
                 workingstatus:$("#inputWorkingStatus").prop("checked"),
-                currentwork:$("inputWork").val()
+                currentwork:$("#inputWork").val(),
+                mobile:$("#inputMobile").val(),
+                email:$("#inputEmail").val()
             },
             success:res=>{
                 sessionStorage.setItem("userName", res.username)
@@ -128,6 +152,8 @@
                 sessionStorage.setItem("password", res.password)
                 sessionStorage.setItem("workingStatus", res.workingStatus)
                 sessionStorage.setItem("currentWork", res.currentWork)
+                sessionStorage.setItem("mobileNumber", res.mobileNumber)
+                sessionStorage.setItem("email", res.email)
 
                 @* Swal.fire({
                         icon: 'success',

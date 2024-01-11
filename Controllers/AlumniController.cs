@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using AlumniManagement.Entities;
+using System.Security.Policy;
 
 namespace AlumniManagement.Controllers
 {
@@ -55,7 +56,7 @@ namespace AlumniManagement.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,FirstName,LastName,Username,Password,CourseGraduated,YearGraduated,WorkingStatus,CurrentWork")] Alumnus alumnus)
+        public async Task<IActionResult> Create([Bind("Id,FirstName,LastName,Username,Role,Password,CourseGraduated,YearGraduated,WorkingStatus,CurrentWork, MobileNumber, Email")] Alumnus alumnus)
         {
             if (ModelState.IsValid)
             {
@@ -87,7 +88,7 @@ namespace AlumniManagement.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,FirstName,LastName,Username,Password,CourseGraduated,YearGraduated,WorkingStatus,CurrentWork")] Alumnus alumnus)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,FirstName,LastName,Username,Password, Role,CourseGraduated,YearGraduated,WorkingStatus,CurrentWork, MobileNumber, Email")] Alumnus alumnus)
         {
             if (id != alumnus.Id)
             {

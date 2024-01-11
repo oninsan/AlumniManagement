@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "LeS/9Sjufu2T1IQFbw3r9n0Fd1EjIAUgSxWwulTloB4=",
+  "Hash": "KDuXmau30TawmHeGvAxWqi4JCgS1dsJULHRXN5BNRXA=",
   "Source": "AlumniManagement",
   "BasePath": "_content/AlumniManagement",
   "Mode": "Default",
@@ -3302,6 +3302,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\img\\commerce_logo.png"
+    },
+    {
+      "Identity": "C:\\Users\\Oninsama\\Documents\\Freelances\\AlumniManagement\\wwwroot\\img\\crmc_alumni.jpeg",
+      "SourceId": "AlumniManagement",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Oninsama\\Documents\\Freelances\\AlumniManagement\\wwwroot\\",
+      "BasePath": "_content/AlumniManagement",
+      "RelativePath": "img/crmc_alumni.jpeg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\img\\crmc_alumni.jpeg"
     },
     {
       "Identity": "C:\\Users\\Oninsama\\Documents\\Freelances\\AlumniManagement\\wwwroot\\img\\cte_logo.jpg",

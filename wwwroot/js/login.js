@@ -1,5 +1,4 @@
 $(()=>{
-
     $(".submit").click(e=>{
         e.preventDefault()
         const user = $(".username").val();
@@ -25,6 +24,8 @@ $(()=>{
                     sessionStorage.setItem("yearGraduated", res.yearGraduated)
                     sessionStorage.setItem("currentWork", res.currentWork)
                     sessionStorage.setItem("workingStatus", res.workingStatus)
+                    sessionStorage.setItem("mobileNumber", res.mobileNumber)
+                    sessionStorage.setItem("email", res.email)
                     console.log(res)
                     if(res.role==="admin"){
                         location.href = "/home" 

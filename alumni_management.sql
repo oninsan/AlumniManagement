@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 13, 2023 at 08:02 AM
+-- Generation Time: Jan 10, 2024 at 09:58 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -47,9 +47,11 @@ INSERT INTO `alumni` (`id`, `first_name`, `last_name`, `username`, `password`, `
 (1, 'Niño', 'Abao', 'oninsan', '12345', 'BSIT', '2024', 1, 'Data Science Engineer'),
 (2, 'Benry', 'Olidiana', 'ben', 'ry', 'BSIT', '2024', 1, 'IT Specialist'),
 (3, 'Micheal Jay', 'Sinadjan', 'mj', 'sinad', 'BSIT', '2024', 1, 'IT Specialist'),
-(4, 'Leslie', 'Balabat', 'leslie', 'balabat', 'BSIT', '2024', 1, 'Teacher'),
-(5, 'jesshuacutie', 'cutelang', 'hehehe', 'huhuhu', 'bsit', '2024', 0, 'n/a'),
-(6, 'manjorie', 'hehehe', 'hihihi', 'hahaha', 'bscrim', '2021', 1, 'teacher');
+(4, 'Leslie', 'Balabat', 'leslie', 'balabat', 'COMMERCE', '2024', 1, 'Teacher'),
+(5, 'jesshuacutie', 'cutelang', 'hehehe', 'huhuhu', 'BSIT', '2023', 1, 'Wala'),
+(6, 'Kaloy', 'Eh', 'kaloy', 'eh', 'BSCRIM', '2021', 1, 'IT personel'),
+(7, 'Cresil', 'Rondina', 'cres', 'sil', 'BSED', '2024', 1, 'Teacher'),
+(8, 'Lucas', 'Catadman', 'luc', 'cas', 'PSYCHOLOGY', '2024', 1, 'Councilor');
 
 -- --------------------------------------------------------
 
@@ -80,6 +82,19 @@ INSERT INTO `announcement` (`id`, `announcement_title`, `announcement_descriptio
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `announcement_comment`
+--
+
+CREATE TABLE `announcement_comment` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `announcement_id` int(11) NOT NULL,
+  `comment` varchar(2000) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `event`
 --
 
@@ -100,7 +115,61 @@ INSERT INTO `event` (`id`, `event_name`, `event_description`, `event_date`, `eve
 (1, 'Alumni Homecoming', 'Everyone is invited to the 87th grand homecoming. A lot of surprises aside from pa bingo and all.', '2023-12-21', '20:59:00', '1.Oninsama\r\n2.Koky\r\n3.Baldo'),
 (2, 'Alumni Bingo', 'To celebrate the founding anniversary of CRMC, the alumni committee decide to have bingo games with many prizes.', '2023-12-27', '03:58:00', 'All alumni'),
 (3, 'Banda2', 'Manganta tang tanan', '2023-12-15', '06:15:00', '1. Kamekaze\r\n2. Parokya ni Edgar\r\n3. Ben and Ben'),
-(4, 'ccs night', 'secret', '2023-12-11', '18:40:00', 'bsit stud, faculty and members');
+(4, 'ccs night', 'secret', '2023-12-11', '18:40:00', 'bsit stud, faculty and members'),
+(5, 'Dinner Date', 'Dinner Date with Benry Olidiana', '2024-01-22', '19:31:00', 'wala');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `event_comment`
+--
+
+CREATE TABLE `event_comment` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `event_id` int(11) NOT NULL,
+  `comment` varchar(2000) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `event_comment`
+--
+
+INSERT INTO `event_comment` (`id`, `user_id`, `event_id`, `comment`) VALUES
+(1, 6, 5, 'Asa isul ob ani admin?'),
+(2, 6, 4, 'Puti isul ob?'),
+(3, 6, 5, 'Naa benry'),
+(4, 6, 5, 'Nag add ko ug comment'),
+(5, 6, 3, 'Mokanta si neil chris?'),
+(6, 6, 2, 'Nag add ug comment');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `event_like`
+--
+
+CREATE TABLE `event_like` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `event_id` int(11) NOT NULL,
+  `status` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `event_like`
+--
+
+INSERT INTO `event_like` (`id`, `user_id`, `event_id`, `status`) VALUES
+(1, 6, 5, 0),
+(2, 6, 4, 1),
+(3, 6, 1, 1),
+(4, 3, 4, 1),
+(5, 3, 5, 1),
+(6, 3, 2, 0),
+(7, 3, 3, 1),
+(8, 6, 2, 1),
+(9, 6, 3, 1);
 
 --
 -- Indexes for dumped tables
@@ -119,9 +188,27 @@ ALTER TABLE `announcement`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `announcement_comment`
+--
+ALTER TABLE `announcement_comment`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `event`
 --
 ALTER TABLE `event`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `event_comment`
+--
+ALTER TABLE `event_comment`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `event_like`
+--
+ALTER TABLE `event_like`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -132,7 +219,7 @@ ALTER TABLE `event`
 -- AUTO_INCREMENT for table `alumni`
 --
 ALTER TABLE `alumni`
-  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `announcement`
@@ -141,10 +228,28 @@ ALTER TABLE `announcement`
   MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
+-- AUTO_INCREMENT for table `announcement_comment`
+--
+ALTER TABLE `announcement_comment`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `event`
 --
 ALTER TABLE `event`
-  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `event_comment`
+--
+ALTER TABLE `event_comment`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `event_like`
+--
+ALTER TABLE `event_like`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

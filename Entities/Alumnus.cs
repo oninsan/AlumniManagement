@@ -15,6 +15,8 @@ public partial class Alumnus
 
     public string Password { get; set; } = null!;
 
+    public string Role { get; set; } = null!;
+
     public string CourseGraduated { get; set; } = null!;
 
     public short YearGraduated { get; set; }
@@ -22,4 +24,8 @@ public partial class Alumnus
     public bool WorkingStatus { get; set; }
 
     public string CurrentWork { get; set; } = null!;
+
+    public string MobileNumber { get; set; } = null!;
+
+    public string Email { get; set; } = null!;
 }

@@ -689,6 +689,10 @@
       "PackagePath": "staticwebassets\\img\\commerce_logo.png"
     },
     {
+      "Id": "C:\\Users\\Oninsama\\Documents\\Freelances\\AlumniManagement\\wwwroot\\img\\crmc_alumni.jpeg",
+      "PackagePath": "staticwebassets\\img\\crmc_alumni.jpeg"
+    },
+    {
       "Id": "C:\\Users\\Oninsama\\Documents\\Freelances\\AlumniManagement\\wwwroot\\img\\cte_logo.jpg",
       "PackagePath": "staticwebassets\\img\\cte_logo.jpg"
     },

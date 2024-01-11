@@ -34,8 +34,24 @@
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="Role" class="control-label"></label>
+                @* <input asp-for="Role" class="form-control"/> *@
+                <select asp-for="Role" class="form-select">
+                    <option value="user">User</option>
+                    <option value="admin">Admin</option>
+                </select>
+                <span asp-validation-for="Role" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="CourseGraduated" class="control-label"></label>
-                <input asp-for="CourseGraduated" class="form-control" />
+                @* <input asp-for="CourseGraduated" class="form-control" /> *@
+                <select asp-for="CourseGraduated" class="form-select">
+                    <option value="BSIT">BSIT</option>
+                    <option value="BSCRIM">BSCRIM</option>
+                    <option value="BSED">BSIT</option>
+                    <option value="PSYCHOLOGY">PSYCHOLOGY</option>
+                    <option value="COMMERCE">COMMERCE</option>
+                </select>
                 <span asp-validation-for="CourseGraduated" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -52,6 +68,16 @@
                 <label asp-for="CurrentWork" class="control-label"></label>
                 <input asp-for="CurrentWork" class="form-control" />
                 <span asp-validation-for="CurrentWork" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MobileNumber" class="control-label"></label>
+                <input asp-for="MobileNumber" class="form-control" type="number" />
+                <span asp-validation-for="MobileNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
