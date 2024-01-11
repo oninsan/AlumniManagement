@@ -4,6 +4,7 @@
 
 <link rel="stylesheet" href="~/css/user.css">
 @Html.Partial("Partials/EventItem")
+@Html.Partial("Partials/CommentItem")
 
 <div class="container main-container">
     <div class="row">
@@ -188,6 +189,7 @@
                     eventItem.find(".total-comments").attr("id",`total-comments-${item.id}`)
                     eventItem.find(".like").attr("id", `like-${item.id}`)
                     eventItem.find(".likes-total").attr("id",`likes-total-${item.id}`)
+                    eventItem.find(".comment-section").attr("id", `comment-section-${item.id}`)
 
                     container.append(eventItem)
                     
@@ -233,6 +235,7 @@
                             },
                             success:res=>{
                                 console.log(res)
+                                $(`#comment-${item.id}`).val()
                             },
                             error:err=>{
                                 console.log(err)
@@ -254,6 +257,14 @@
                         error:err=>{
                             console.log(err)
                         }
+                    })
+
+                    // toggle comment section
+                    $(`#total-comments-${item.id}`).click(e=>{
+                        e.preventDefault()
+                        $(`#comment-section-${item.id}`).hasClass("hidden-comments")?
+                            $(`#comment-section-${item.id}`).removeClass("hidden-comments"):
+                            $(`#comment-section-${item.id}`).addClass("hidden-comments")
                     })
 
                     // add like
@@ -288,6 +299,31 @@
                             }
                         })
                         console.log("hello")
+                    })
+
+                    // get event comments
+                    $.ajax({
+                        method:"GET",
+                        url: "/api/client/geteventcomments",
+                        data:{
+                            eventid:item.id
+                        },
+                        success:res=>{
+                            const commentsTemp = $("#comment__temp").html()
+                            const commentsSection = $(`#comment-section-${item.id}`)
+                            res.forEach(comment=>{
+                                if(item.id === comment.eventId)
+                                {
+                                    const commentsItem = $(commentsTemp).clone()
+                                    commentsItem.find(".commentor").text(`${comment.firstName} ${comment.lastName}`)
+                                    commentsItem.find(".comments-item").text(comment.comment.comment)
+                                    commentsSection.append(commentsItem)
+                                }
+                            })
+                        },
+                        error:err=>{
+                            console.log(err)
+                        }
                     })
 
                 })

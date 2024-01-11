@@ -208,5 +208,24 @@ namespace AlumniManagement.Controllers
         {
             return new JsonResult(_context.EventLikes.Where(e=>e.EventId==eventid && e.Status==true).Count());
         }
+
+        // get all comments for each event item
+        public async Task<IActionResult> GetEventComments(int eventid)
+        {
+            var comments = await (from comment in _context.EventComments
+                join alumni in _context.Alumni on comment.UserId equals alumni.Id
+                select new 
+                {
+                    Comment = comment,
+                    EventId = comment.EventId,
+                    FirstName = alumni.FirstName,
+                    LastName = alumni.LastName
+                })
+                .OrderByDescending(c => c.Comment.Id)
+                .ToListAsync();
+
+
+            return new JsonResult(comments);
+        }
     }
 }
