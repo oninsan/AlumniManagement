@@ -1,0 +1,213 @@
+@{
+    ViewData["Title"] = "Alumni Page";
+}
+
+<link rel="stylesheet" href="~/css/user.css">
+@Html.Partial("Partials/AnnouncementItem")
+
+<style>
+    .timeline-container {
+        max-width: 60%;
+        margin: 0 auto;
+    }
+
+    h2 {
+        font-size: 24px;
+        margin-bottom: 20px;
+        text-align: left;
+    }
+
+    .timeline-item {
+        display: flex;
+        position: relative;
+        margin-bottom: 20px;
+    }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 25px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: #ccc;
+        }
+
+    .timeline-icon {
+        position: relative;
+        z-index: 1;
+        width: 50px;
+        height: 50px;
+        background-color: #4CAF50;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #fff;
+        margin-right: 20px;
+        font-size: 24px;
+    }
+
+    .timeline-content {
+        background-color: #fff;
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+        position: relative;
+        z-index: 1;
+    }
+
+        .timeline-content .time {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .timeline-content p {
+            font-size: 14px;
+            margin: 0;
+        }
+
+    /* Badge Styling */
+    .badge {
+        background-color: orange;
+        color: #fff;
+        padding: 2px 8px;
+        border-radius: 3px;
+        font-size: 12px;
+    }
+
+    .badge-new {
+        background-color: #00bcd4;
+        color: #fff;
+        padding: 2px 8px;
+        border-radius: 3px;
+        font-size: 12px;
+    }
+
+    /* Special Classes */
+    .mandatory .timeline-icon {
+        background-color: red;
+    }
+
+    .new .timeline-icon {
+        background-color: #00bcd4;
+    }
+
+</style>
+
+<div class="container main-container">
+    <div class="row">
+        <div class="col-md-12">
+            <div id="content" class="content content-full-width">
+                <div class="profile">
+                    <div class="profile-header">
+                        <div class="profile-header-cover"></div>
+                        <div class="profile-header-content">
+                            <div class="profile-header-img">
+                                <img class="profile" src="" alt="Admin Profile Picture">
+                            </div>
+                            <div class="profile-header-info">
+                                <h4 class="m-t-10 m-b-5 name"></h4>
+                                <p class="m-b-10 id"></p>
+                                <p class="m-b-10 job">UXUI + Frontend Developer</p>
+                                <a asp-controller="User" asp-action="PView" class="btn btn-sm btn-info mb-2">View Profile</a>
+                                <a asp-controller="User" asp-action="AlumniID" class="btn btn-sm btn-info mb-2">Alumni ID</a>
+                                <a asp-controller="User" asp-action="Profile" class="btn btn-sm btn-info mb-2">Edit Profile</a>
+                                <button type="button" class="btn btn-sm btn-info mb-2" onclick="logout()">Logout</button>
+                            </div>
+                        </div>
+                        <ul class="profile-header-tab nav nav-tabs">
+                            <li class="nav-item"><a asp-controller="User" asp-action="Events" class="nav-link_">Events</a></li>
+                            <li class="nav-item"><a asp-controller="User" asp-action="Index" class="nav-link_ active show">Announcements</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="profile-content">
+                    <div class="tab-content p-0">
+                        <div class="tab-pane fade active show" id="profile-post">
+                            <div class="timeline-container">
+                                <h2>Your Timeline</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.1/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    $(document).ready(() => {
+        // Check login status
+        if (sessionStorage.getItem("logged") == false || sessionStorage.getItem("logged") == undefined) {
+            location.href = "/";
+        }
+
+        // Fetch Admin Data
+        $.ajax({
+            method: "GET",
+            url: "/api/client/getadmin",
+            success: res => {
+                sessionStorage.setItem("adminRole", res.admin.Role);
+                sessionStorage.setItem("adminFirstName", res.admin.FirstName);
+                sessionStorage.setItem("adminLastName", res.admin.LastName);
+                sessionStorage.setItem("adminPicture", res.admin.Picture);
+                console.log(sessionStorage.getItem("adminRole"), sessionStorage.getItem("adminFirstName"), sessionStorage.getItem("adminLastName"), sessionStorage.getItem("adminPicture"));
+            },
+            error: err => {
+                console.log("Error fetching admin data", err);
+            }
+        });
+
+        // Fetch Announcements
+        $.ajax({
+            method: "GET",
+            url: "/api/client/getalumniannouncements",
+            success: res => {
+                console.log(res);
+                const container = $(".timeline-container"); // Correct container class
+                const announcementsTemp = $("#a__item").html(); // Get the template HTML
+
+                // Clear the container before appending
+                container.empty();
+
+                // Iterate through each announcement
+                res.forEach(item => {
+                    console.log("item, ", item);
+                    const announcementItem = $(announcementsTemp).clone(); // Clone the template for each item
+
+                    // Set dynamic data into the cloned template
+                    announcementItem.find(".template-title").text(item.announcementTitle); // Title
+                    announcementItem.find(".a__details").text(item.announcementDescription); // Description
+                    announcementItem.find(".admin_prof").attr("src", `/pic/${sessionStorage.getItem("adminPicture")}`);
+
+                    // Formatting the DateCreated property (if needed)
+                    const dateCreated = new Date(item.dateCreated).toLocaleString(); // Format to a readable format
+                    announcementItem.find(".template-time").text(dateCreated); // Set the announcement time
+
+                    // Append the filled template to the container
+                    container.append(announcementItem);
+                });
+            },
+            error: err => {
+                console.log("Error fetching announcements:", err);
+            }
+        });
+
+        // Set profile info from sessionStorage
+        $(".name").text(`${sessionStorage.getItem("firstName")} ${sessionStorage.getItem("lastName")}`);
+        $(".id").text(`Alumni ID ${sessionStorage.getItem("yearGraduated")}-${sessionStorage.getItem("ID")}`);
+        $(".job").text(`${sessionStorage.getItem("currentWork")}`);
+        $(".profile").attr("src", `/pic/${sessionStorage.getItem("picture")}`);
+    });
+
+    // Logout function
+    function logout() {
+        sessionStorage.clear();
+        window.location.href = "/";
+    }
+</script>

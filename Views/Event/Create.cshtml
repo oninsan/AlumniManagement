@@ -1,0 +1,87 @@
+@model AlumniManagement.Entities.Event
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Event</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="EventName" class="control-label"></label>
+                <input asp-for="EventName" class="form-control" />
+                <span asp-validation-for="EventName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EventDescription" class="control-label"></label>
+                <input asp-for="EventDescription" class="form-control" />
+                <span asp-validation-for="EventDescription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EventDate" class="control-label"></label>
+                <input asp-for="EventDate" class="form-control" type="date" />
+                <span asp-validation-for="EventDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EventTime" class="control-label"></label>
+                <input asp-for="EventTime" class="form-control" type="time"/>
+                <span asp-validation-for="EventTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AttendeesList" class="control-label"></label>
+                <textarea asp-for="AttendeesList" class="form-control"></textarea>
+                <span asp-validation-for="AttendeesList" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="eventImage" class="control-label">Event Image</label>
+                <input type="file" id="eventImage" name="eventImage" class="form-control" />
+                <span asp-validation-for="EventImagePath" class="text-danger"></span>
+                <p id="imageMessage">No Image Selected</p>
+                <img id="imagePreview" style="max-width: 200px; max-height: 150px; display: none; margin-top: 10px;" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script>
+        // JavaScript to preview the selected image
+        document.getElementById('eventImage').addEventListener('change', function (e) {
+            const file = this.files[0]; // Get the selected file
+            const imageMessage = document.getElementById('imageMessage');
+            const imagePreview = document.getElementById('imagePreview');
+
+            if (file) {
+                // Hide "No Image Selected" message
+                imageMessage.style.display = "none";
+
+                // Create a file reader to display the image
+                const reader = new FileReader();
+                reader.onload = function (event) {
+                    // Show the image preview
+                    imagePreview.src = event.target.result;
+                    imagePreview.style.display = "block"; // Make the image preview visible
+                };
+                reader.readAsDataURL(file); // Read the file as a data URL
+            } else {
+                // If no file is selected, show the "No Image Selected" message and hide the preview
+                imageMessage.style.display = "block";
+                imagePreview.style.display = "none";
+            }
+        });
+    </script>
+}

@@ -1,0 +1,96 @@
+@{
+    ViewData["Title"] = "Edit Profile";
+}
+<link rel="stylesheet" href="~/css/user.css">
+<link rel="stylesheet" href="~/css/profile.css">
+<link href="~/css/print.css" media="print" rel="stylesheet" />
+
+
+
+
+</style>
+<div class="container-xl px-4 mt-4">
+    <!-- Account page navigation-->
+    @* <nav class="nav nav-borders">
+    <a class="nav-link active ms-0" href="https://www.bootdey.com/snippets/view/bs5-edit-profile-account-details"
+    target="__blank">Profile</a>
+    <a class="nav-link" href="https://www.bootdey.com/snippets/view/bs5-profile-billing-page"
+    target="__blank">Billing</a>
+    <a class="nav-link" href="https://www.bootdey.com/snippets/view/bs5-profile-security-page"
+    target="__blank">Security</a>
+    <a class="nav-link" href="https://www.bootdey.com/snippets/view/bs5-edit-notifications-page"
+    target="__blank">Notifications</a>
+    </nav> *@
+    @* <hr class="mt-0 mb-4"> *@
+    <div class="row">
+        @* <div class="col-xl-4">
+        <!-- Profile picture card-->
+        <div class="card mb-4 mb-xl-0">
+        <div class="card-header">Profile Picture</div>
+        <div class="card-body text-center">
+        <!-- Profile picture image-->
+        <img class="img-account-profile rounded-circle mb-2" src="http://bootdey.com/img/Content/avatar/avatar1.png"
+        alt="">
+        <!-- Profile picture help block-->
+        <div class="small font-italic text-muted mb-4">JPG or PNG no larger than 5 MB</div>
+        <!-- Profile picture upload button-->
+        <button class="btn btn-primary" type="button">Upload new image</button>
+        </div>
+        </div>
+        </div> *@
+        <div class="col-xl-4 mx-auto">
+            <!-- Account details card-->
+            <div class="card mb-4 text-center">
+                <div class="card-header fw-bold">Cebu Roosevelt Memorial Colleges</div>
+                <div class="card-body">
+                    <div class="fw-bold">San Vicente St., Bogo City, Cebu</div>
+                    <br>
+                    <div class="fw-bold" style="font-size: 1.25rem">Alumni Association, INC</div>
+                    <div style="display: flex; justify-content: center;">
+                        <img class="profile profile-header-img" src="/pic/profile.png" alt style="margin: auto;">
+                    </div>
+
+                    <form>
+                        <!-- Form Group (username)-->
+                        <div class="mb-3">
+
+                            <div class="fw-bold" style="font-size: 3.25rem" id="inputUsername"></div>
+                            <div class="fw-bold" style="font-size: 1.25rem" id="inputID"></div>
+                            <br>
+                            <div class="fw-bold" style="font-size: 2.25rem" id="inputCourseName"></div>
+                            <div class="fw-bold" style="font-size: 2.25rem" id="inputYearGraduated"></div>
+                            <br>
+                            <div class="fw-bold" style="font-size: 2.25rem" id="inputMobile"></div>
+
+                        </div>
+
+
+                        <!-- Home button-->
+
+                        <a asp-action="Index" class="btn btn-primary" type="button">Home</a>
+                        <button class="btn btn-success" onclick="window.print()">Print</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script>
+
+    $("#inputUsername").text(sessionStorage.getItem("firstName") + " " + sessionStorage.getItem("lastName"))
+    $("#inputID").text("2024-" + sessionStorage.getItem("ID"))
+    $("#inputCourseName").text(sessionStorage.getItem("courseGraduated"))
+    $("#inputYearGraduated").text("Batch " + "(" + sessionStorage.getItem("yearGraduated") + ")")
+    $("#inputMobile").text(sessionStorage.getItem("mobileNumber"))
+
+    $("#inputDepartment").val(sessionStorage.getItem("department"))
+    sessionStorage.getItem("workingStatus") === "true" ? $("#inputWorkingStatus").prop("checked", true) : $("#inputWorkingStatus").prop("checked", false)
+    $("#inputWork").val(sessionStorage.getItem("currentWork"))
+
+    $("#inputEmail").val(sessionStorage.getItem("email"))
+
+    console.log($("#inputWorkingStatus").prop("checked"))
+
+</script>

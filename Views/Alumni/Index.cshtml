@@ -1,0 +1,163 @@
+@model IEnumerable<AlumniManagement.Entities.Alumnus>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<style>
+    input[type='checkbox'] { 
+        width: 1.5rem !important;
+        height: 1.5rem !important;
+    }
+</style>
+
+<h1>Alumni</h1>
+
+<p>
+    <a class="btn btn-secondary" asp-action="Create">Create New</a>
+</p>
+
+
+
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#filterModal">
+    Filter Alumni
+</button>
+<a href="/Alumni/Index" class="btn btn-secondary">Reset</a>
+
+
+<div class="modal fade" id="filterModal" tabindex="-1" aria-labelledby="filterModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="filterModalLabel">Filter Alumni</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Filter Form -->
+                <form method="get" asp-action="Index">
+                    <div class="mb-3">
+                        <label for="course" class="form-label">Course Graduated</label>
+                        <select name="course" id="course" class="form-control">
+                            <option value="">All Courses</option>
+                            @foreach (var course in Model.Select(a => a.CourseGraduated).Distinct())
+                            {
+                                <option value="@course">@course</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="yearGraduated" class="form-label">Year Graduated</label>
+                        <select name="yearGraduated" id="yearGraduated" class="form-control">
+                            <option value="">All Years</option>
+                            @foreach (var year in Model.Select(a => a.YearGraduated).Distinct())
+                            {
+                                <option value="@year">@year</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="department" class="form-label">Department</label>
+                        <select name="department" id="department" class="form-control">
+                            <option value="">All Departments</option>
+                            @foreach (var dept in Model.Select(a => a.Department).Distinct())
+                            {
+                                <option value="@dept">@dept</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Apply Filter</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            @* <th>
+                @Html.DisplayNameFor(model => model.Username)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Password)
+            </th> *@
+            <th>
+                @Html.DisplayNameFor(model => model.CourseGraduated)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.YearGraduated)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WorkingStatus)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CurrentWork)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Role)
+            </th>
+            <th>
+                Confirmation
+            </th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            @* <td>
+                @Html.DisplayFor(modelItem => item.Username)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Password)
+            </td> *@
+            <td>
+                @Html.DisplayFor(modelItem => item.CourseGraduated)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.YearGraduated)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WorkingStatus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CurrentWork)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Role)
+            </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ConfirmationStatus)
+                </td>
+            <td>
+                @* <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a> *@
+
+                <a asp-action="Details" asp-controller="Alumni" class="btn btn-primary" asp-route-id="@item.Id">Details</a>
+                <a asp-action="Edit" asp-controller="Alumni" class="btn btn-success" asp-route-id="@item.Id">Edit</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+<footer class="footer text-center"> 2021 © Alumni Management brought to you by <a
+    href="https://www.wrappixel.com/">wrappixel.com</a>
+</footer>

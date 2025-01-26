@@ -1,0 +1,169 @@
+@model AlumniManagement.Entities.Alumnus
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Alumnus</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="Picture"/>
+            <div class="form-group">
+                <label asp-for="FirstName" class="control-label"></label>
+                <input asp-for="FirstName" class="form-control" />
+                
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LastName" class="control-label"></label>
+                <input asp-for="LastName" class="form-control" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Username" class="control-label"></label>
+                <input asp-for="Username" class="form-control" />
+                <span asp-validation-for="Username" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Password" class="control-label"></label>
+                <input asp-for="Password" class="form-control"/>
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Role" class="control-label"></label>
+                @* <input asp-for="Role" class="form-control"/> *@
+                <select asp-for="Role" class="form-select">
+                    <option value="user">User</option>
+                    <option value="admin">Admin</option>
+                </select>
+                <span asp-validation-for="Role" class="text-danger"></span>
+            </div>
+
+
+            <div class="form-group">
+                <label asp-for="Department" class="control-label"></label>
+                <select asp-for="Department" class="form-select" id="departmentSelect">
+                    <option value="College of Teacher Education (CTE)">College of Teacher Education (CTE)</option>
+                    <option value="Psychology Department">Psychology Department</option>
+                    <option value="College of Business and Accountancy (CBA)">College of Business and Accountancy (CBA)</option>
+                    <option value="College of Hospitality and Tourism Management (CHTM)">College of Hospitality and Tourism Management (CHTM)</option>
+                    <option value="College of Computer Studies (CCS)">College of Computer Studies (CCS)</option>
+                    <option value="College of Criminal Justice Education (CCJE)">College of Criminal Justice Education (CCJE)</option>
+                </select>
+                <span asp-validation-for="Department" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="CourseGraduated" class="control-label"></label>
+                <select asp-for="CourseGraduated" class="form-select" id="courseSelect">
+                    <!-- Courses will be populated dynamically based on the department selected -->
+                </select>
+                <span asp-validation-for="CourseGraduated" class="text-danger"></span>
+            </div>
+
+
+            <div class="form-group">
+                <label asp-for="YearGraduated" class="control-label"></label>
+                <input asp-for="YearGraduated" class="form-control" />
+                <span asp-validation-for="YearGraduated" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="WorkingStatus" /> @Html.DisplayNameFor(model => model.WorkingStatus)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="CurrentWork" class="control-label"></label>
+                <input asp-for="CurrentWork" class="form-control" />
+                <span asp-validation-for="CurrentWork" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MobileNumber" class="control-label"></label>
+                <input asp-for="MobileNumber" class="form-control" type="number" />
+                <span asp-validation-for="MobileNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ConfirmationStatus" class="control-label"></label>
+                <select asp-for="ConfirmationStatus" class="form-select">
+                    <option value="0">Pending</option>
+                    <option value="1">Declined</option>
+                    <option value="2">Confirmed</option>
+                </select>
+                <span asp-validation-for="ConfirmationStatus" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+
+<script>
+    const departmentCourseMapping = {
+        "College of Teacher Education (CTE)": [
+            "Bachelor of Elementary Education (BEED)",
+            "Bachelor of Secondary Education Major in English (BSED - English)",
+            "Bachelor of Secondary Education Major in Science (BSED - Science)",
+            "Bachelor of Secondary Education Major in Mathematics (BSED - Math)",
+            "Bachelor of Secondary Education Major in Filipino (BSED - Filipino)",
+            "Bachelor of Secondary Education Major in Social Studies (BSED - SocSci)"
+        ],
+        "Psychology Department": [
+            "Bachelor of Science in Psychology"
+        ],
+        "College of Business and Accountancy (CBA)": [
+            "Bachelor of Science in Accountancy (BSA)",
+            "Bachelor of Science in Accounting Technology (BSAT)",
+            "Bachelor of Science in Business Administration (BSBA)"
+        ],
+        "College of Hospitality and Tourism Management (CHTM)": [
+            "Bachelor of Science in Hospitality Management Major in General (BSHM-General)",
+            "Bachelor of Science in Hospitality Management Major in Food and Beverage (BSHM-FB)",
+            "Bachelor of Science in Tourism Management (BSTM)"
+        ],
+        "College of Computer Studies (CCS)": [
+            "Bachelor of Science in Information Technology (BSIT)"
+        ],
+        "College of Criminal Justice Education (CCJE)": [
+            "Bachelor of Science in Criminology (BSC)"
+        ]
+    };
+
+    document.getElementById("departmentSelect").addEventListener("change", function () {
+        const department = this.value;
+        const courseSelect = document.getElementById("courseSelect");
+
+        courseSelect.innerHTML = "";
+
+        if (departmentCourseMapping[department]) {
+            departmentCourseMapping[department].forEach(course => {
+                const option = document.createElement("option");
+                option.value = course;
+                option.text = course;
+                courseSelect.appendChild(option);
+            });
+        }
+    });
+
+    document.getElementById("departmentSelect").dispatchEvent(new Event("change"));
+</script>

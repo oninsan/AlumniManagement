@@ -1,0 +1,224 @@
+﻿@model AlumniManagement.Entities.Alumnus
+<style>
+    * {
+        margin: 0 !important;
+        padding: 0 !important;
+        border: 0 !important;
+    }
+
+    body {
+        background-color: #f8f9fa !important;
+        font-family: 'Courier New', Courier, 'Montserrat' !important;
+    }
+
+    .register-container {
+        max-width: 600px !important;
+        margin: auto !important;
+        margin-top: 50px !important;
+    }
+
+    .register-form {
+        background-color: #ffffff !important;
+        padding: 20px !important;
+        border-radius: 8px !important;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1) !important;
+    }
+
+        .register-form h2 {
+            text-align: center !important;
+            margin-bottom: 30px !important;
+        }
+
+        .register-form input[type="text"],
+        .register-form input[type="password"],
+        .register-form input[type="email"] {
+            width: 100% !important;
+            padding: 10px !important;
+            margin-bottom: 15px !important;
+            border: 1px solid #ced4da !important;
+            border-radius: 4px !important;
+        }
+
+        .register-form button {
+            width: 100% !important;
+            padding: 10px !important;
+            background-color: #007bff !important;
+            color: #ffffff !important;
+            border: none !important;
+            border-radius: 4px !important;
+            cursor: pointer !important;
+        }
+
+            .register-form button:hover {
+                background-color: #0056b3 !important;
+            }
+
+    header, aside, .header-title {
+        display: none !important;
+    }
+
+    .container-fluid {
+        width: 100% !important;
+    }
+
+    .container-fluid {
+        background-color: #f8f9fa !important;
+    }
+</style>
+
+
+<div class="container register-container">
+    <div class="register-form">
+        <div class="container d-flex flex-column align-items-center mb-3">
+            <img src="~/img/crmc_alumni.jpeg" width="120" alt="">
+        </div>
+        <h2 style="color: maroon; font-weight: 1000">Alumni Registration</h2>
+
+
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div class="alert alert-success" role="alert">
+                @TempData["SuccessMessage"]
+            </div>
+        }
+
+        <!-- Registration form fields -->
+        <form asp-action="Index" method="post">
+
+            <input type="hidden" value="profile.png" asp-for="Picture" class="form-control" />
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="FirstName" class="control-label"></label>
+                <input asp-for="FirstName" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LastName" class="control-label"></label>
+                <input asp-for="LastName" class="form-control" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Username" class="control-label"></label>
+                <input asp-for="Username" class="form-control" />
+                <span asp-validation-for="Username" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Password" class="control-label"></label>
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Role" class="control-label"></label>
+                @* <input asp-for="Role" class="form-control" /> *@
+                <select asp-for="Role" class="form-select">
+                    <option value="user">User</option>
+                    <option value="admin">Admin</option>
+                </select>
+                <span asp-validation-for="Role" class="text-danger"></span>
+            </div>
+           
+            <div class="form-group">
+                <label asp-for="Department" class="control-label"></label>
+                <select asp-for="Department" class="form-select" id="departmentSelect">
+                    <option value="College of Teacher Education (CTE)">College of Teacher Education (CTE)</option>
+                    <option value="Psychology Department">Psychology Department</option>
+                    <option value="College of Business and Accountancy (CBA)">College of Business and Accountancy (CBA)</option>
+                    <option value="College of Hospitality and Tourism Management (CHTM)">College of Hospitality and Tourism Management (CHTM)</option>
+                    <option value="College of Computer Studies (CCS)">College of Computer Studies (CCS)</option>
+                    <option value="College of Criminal Justice Education (CCJE)">College of Criminal Justice Education (CCJE)</option>
+                </select>
+                <span asp-validation-for="Department" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="CourseGraduated" class="control-label"></label>
+                <select asp-for="CourseGraduated" class="form-select" id="courseSelect">
+                    <!-- Courses will be populated dynamically based on the department selected -->
+                </select>
+                <span asp-validation-for="CourseGraduated" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="YearGraduated" class="control-label"></label>
+                <input asp-for="YearGraduated" class="form-control" />
+                <span asp-validation-for="YearGraduated" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="WorkingStatus" /> @Html.DisplayNameFor(model => model.WorkingStatus)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="CurrentWork" class="control-label"></label>
+                <input asp-for="CurrentWork" class="form-control" />
+                <span asp-validation-for="CurrentWork" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MobileNumber" class="control-label"></label>
+                <input asp-for="MobileNumber" class="form-control" />
+                <span asp-validation-for="MobileNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+
+            <button type="submit" class="btn btn-primary">Register</button>
+        </form>
+        <a href="/">Login</a>
+    </div>
+</div>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/js/register.js"></script>
+<script>
+    const departmentCourseMapping = {
+        "College of Teacher Education (CTE)": [
+            "Bachelor of Elementary Education (BEED)",
+            "Bachelor of Secondary Education Major in English (BSED - English)",
+            "Bachelor of Secondary Education Major in Science (BSED - Science)",
+            "Bachelor of Secondary Education Major in Mathematics (BSED - Math)",
+            "Bachelor of Secondary Education Major in Filipino (BSED - Filipino)",
+            "Bachelor of Secondary Education Major in Social Studies (BSED - SocSci)"
+        ],
+        "Psychology Department": [
+            "Bachelor of Science in Psychology"
+        ],
+        "College of Business and Accountancy (CBA)": [
+            "Bachelor of Science in Accountancy (BSA)",
+            "Bachelor of Science in Accounting Technology (BSAT)",
+            "Bachelor of Science in Business Administration (BSBA)"
+        ],
+        "College of Hospitality and Tourism Management (CHTM)": [
+            "Bachelor of Science in Hospitality Management Major in General (BSHM-General)",
+            "Bachelor of Science in Hospitality Management Major in Food and Beverage (BSHM-FB)",
+            "Bachelor of Science in Tourism Management (BSTM)"
+        ],
+        "College of Computer Studies (CCS)": [
+            "Bachelor of Science in Information Technology (BSIT)"
+        ],
+        "College of Criminal Justice Education (CCJE)": [
+            "Bachelor of Science in Criminology (BSC)"
+        ]
+    };
+
+    document.getElementById("departmentSelect").addEventListener("change", function () {
+        const department = this.value;
+        const courseSelect = document.getElementById("courseSelect");
+
+        courseSelect.innerHTML = "";
+
+        if (departmentCourseMapping[department]) {
+            departmentCourseMapping[department].forEach(course => {
+                const option = document.createElement("option");
+                option.value = course;
+                option.text = course;
+                courseSelect.appendChild(option);
+            });
+        }
+    });
+
+    document.getElementById("departmentSelect").dispatchEvent(new Event("change"));
+</script>

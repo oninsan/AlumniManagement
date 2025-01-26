@@ -1,0 +1,395 @@
+@{
+    ViewData["Title"] = "Alumni Page";
+}
+
+<link rel="stylesheet" href="~/css/user.css">
+@Html.Partial("Partials/EventItem")
+@Html.Partial("Partials/CommentItem")
+
+<div class="container main-container">
+    <div class="row">
+        <div class="col-md-12">
+            <div id="content" class="content content-full-width">
+                <div class="profile">
+                    <div class="profile-header">
+                        <div class="profile-header-cover"></div>
+                        <div class="profile-header-content">
+                            <div class="profile-header-img">
+                                <img class="profile" src="" alt>
+                            </div>
+                            <div class="profile-header-info">
+                                <h4 class="m-t-10 m-b-5 name">Benry Olidiana</h4>
+                                <p class="m-b-10 id"></p>
+                                <p class="m-b-10 job">UXUI + Frontend Developer</p>
+                                <a asp-controller="User" asp-action="PView" class="btn btn-sm btn-info mb-2">View Profile</a>
+                                <a asp-controller="User" asp-action="AlumniID" class="btn btn-sm btn-info mb-2">Alumni ID</a>
+                                <a asp-controller="User" asp-action="Profile" class="btn btn-sm btn-info mb-2">Edit Profile</a>
+                                <button type="button" class="btn btn-sm btn-info mb-2" onclick="logout()">Logout</button>
+                        
+                            
+                            </div>
+                        </div>
+                        <ul class="profile-header-tab nav nav-tabs">
+                            <li class="nav-item"><a asp-controller="User" asp-action="Events" class="nav-link_ active show">Events</a></li>
+                            <li class="nav-item"><a asp-controller="User" asp-action="Index" class="nav-link_">Announcements</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="profile-content">
+                    <div class="tab-content p-0">
+                        <div class="tab-pane fade active show" id="profile-post">
+                            <ul class="timeline">
+                                @* <li>
+                                    <div class="timeline-time">
+                                        <span class="date">today</span>
+                                        <span class="time">04:20</span>
+                                    </div>
+                                    <div class="timeline-icon">
+                                        <a href="javascript:;">&nbsp;</a>
+                                    </div>
+                                    <div class="timeline-body">
+                                        <div class="timeline-header">
+                                            <span class="userimage"><img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt></span>
+                                            <span class="username"><a href="javascript:;">Sean Ngu</a> <small></small></span>
+                                            <span class="pull-right text-muted">18 Views</span>
+                                        </div>
+                                        <div class="timeline-content">
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc faucibus turpis quis tincidunt luctus. Nam sagittis dui in nunc consequat, in imperdiet nunc sagittis.
+                                            </p>
+                                        </div>
+                                        <div class="timeline-likes">
+                                            <div class="stats-right">
+                                                <span class="stats-text">259 Shares</span>
+                                                <span class="stats-text">21 Comments</span>
+                                            </div>
+                                            <div class="stats">
+                                                <span class="fa-stack fa-fw stats-icon">
+                                                    <i class="fa fa-circle fa-stack-2x text-danger"></i>
+                                                    <i class="fa fa-heart fa-stack-1x fa-inverse t-plus-1"></i>
+                                                </span><img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt>
+                                                <span class="fa-stack fa-fw stats-icon">
+                                                    <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                                                    <i class="fa fa-thumbs-up fa-stack-1x fa-inverse"></i>
+                                                </span>
+                                                <span class="stats-total">4.3k</span>
+                                            </div>
+                                        </div>
+                                        <div class="timeline-footer">
+                                            <a href="javascript:;" class="m-r-15 text-inverse-lighter"><i class="fa fa-thumbs-up fa-fw fa-lg m-r-3"></i> Like</a>
+                                            <a href="javascript:;" class="m-r-15 text-inverse-lighter"><i class="fa fa-comments fa-fw fa-lg m-r-3"></i> Comment</a>
+                                            <a href="javascript:;" class="m-r-15 text-inverse-lighter"><i class="fa fa-share fa-fw fa-lg m-r-3"></i> Share</a>
+                                        </div>
+                                        <div class="timeline-comment-box">
+                                            <div class="user">
+                                                <img src="https://bootdey.com/img/Content/avatar/avatar3.png">
+                                            </div>
+                                            <div class="input">
+                                                <form action>
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control rounded-corner" placeholder="Write a comment...">
+                                                        <span class="input-group-btn p-l-10">
+                                                            <button class="btn btn-primary f-s-12 rounded-corner" type="button">Comment</button>
+                                                        </span>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li> *@
+                                @* <li>
+                                    <div class="timeline-time">
+                                        <span class="date">yesterday</span>
+                                        <span class="time">20:17</span>
+                                    </div>
+                                    <div class="timeline-icon">
+                                        <a href="javascript:;">&nbsp;</a>
+                                    </div>
+                                    <div class="timeline-body">
+                                        <div class="timeline-header">
+                                            <span class="userimage"><img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt></span>
+                                            <span class="username">Sean Ngu</span>
+                                            <span class="pull-right text-muted">82 Views</span>
+                                        </div>
+                                        <div class="timeline-content">
+                                            <p>Location: United States</p>
+                                        </div>
+                                        <div class="timeline-footer">
+                                            <a href="javascript:;" class="m-r-15 text-inverse-lighter"><i class="fa fa-thumbs-up fa-fw fa-lg m-r-3"></i> Like</a>
+                                            <a href="javascript:;" class="m-r-15 text-inverse-lighter"><i class="fa fa-comments fa-fw fa-lg m-r-3"></i> Comment</a>
+                                            <a href="javascript:;" class="m-r-15 text-inverse-lighter"><i class="fa fa-share fa-fw fa-lg m-r-3"></i> Share</a>
+                                        </div>
+                                    </div>
+                                </li> *@
+                                @* <li>
+                                    <div class="timeline-time">
+                                        <span class="date">24 February 2014</span>
+                                        <span class="time">08:17</span>
+                                    </div>
+                                    <div class="timeline-icon">
+                                        <a href="javascript:;">&nbsp;</a>
+                                    </div>
+                                    <div class="timeline-body">
+                                        <div class="timeline-header">
+                                            <span class="userimage"><img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt></span>
+                                            <span class="username">Alumni Admin</span>
+                                            <span class="pull-right text-muted">1,282 Views</span>
+                                        </div>
+                                        <div class="timeline-content">
+                                            <p class="lead">
+                                                <i class="fa-fw"></i>
+    Quisque sed varius nisl. Nulla facilisi. Phasellus consequat sapien sit amet nibh molestie placerat. Donec nulla quam, ullamcorper ut velit vitae, lobortis condimentum magna. Suspendisse mollis in sem vel mollis.
+                                                <i class="fa-fw pull-right"></i>
+                                            </p>
+                                        </div>
+                                        <div class="timeline-footer">
+                                            <a href="javascript:;" class="m-r-15 text-inverse-lighter"><i class="fa fa-thumbs-up fa-fw fa-lg m-r-3"></i> Like</a>
+                                            <a href="javascript:;" class="m-r-15 text-inverse-lighter"><i class="fa fa-comments fa-fw fa-lg m-r-3"></i> Comment</a>
+                                            <a href="javascript:;" class="m-r-15 text-inverse-lighter"><i class="fa fa-share fa-fw fa-lg m-r-3"></i> Share</a>
+                                        </div>
+                                    </div>
+                                </li> *@
+                                
+                                @* <li>
+                                    <div class="timeline-icon">
+                                        <a href="javascript:;">&nbsp;</a>
+                                    </div>
+                                    <div class="timeline-body">
+                                    Loading...
+                                    </div>
+
+                                </li> *@
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.1/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+	$(()=>{
+        // check
+        if(sessionStorage.getItem("logged") == false || sessionStorage.getItem("logged") == undefined){
+            location.href ="/"
+        }
+
+        // get all events
+        $.ajax({
+            method:"GET",
+            url:"/api/client/getallevents",
+            success:res=>{
+                console.log(res)
+                const container = $(".timeline")
+                const eventsTemp = $("#e__item").html()
+                res.forEach(item=>{
+                     console.log(item) 
+                    const eventItem = $(eventsTemp).clone()
+                    let date = new Date(item.eventDate)
+                    let options = { year: 'numeric', month: 'long', day: 'numeric' }
+                    let formattedDate = new Intl.DateTimeFormat('en-US', options).format(date)
+                    let eventContent = `
+                        <b>Event:</b> ${item.eventName}<br>
+                        <b>When:</b> ${formattedDate}<br>
+                        <b>Attendees:</b> ${item.attendeesList}<br>
+                        <b>Description:</b> ${item.eventDescription}<br>
+                    `;
+                    if (item.eventImagePath) {
+                        eventContent += `<img src="${item.eventImagePath}" alt="Event Image" />`;
+                    }
+
+                    eventItem.find(".timeline-content>p").html(eventContent);
+                    eventItem.find("button").attr("id",`add-comment-${item.id}`)
+                    eventItem.find("input").attr("id",`comment-${item.id}`)
+                    eventItem.find(".total-comments").attr("id",`total-comments-${item.id}`)
+                    eventItem.find(".like").attr("id", `like-${item.id}`)
+                    eventItem.find(".likes-total").attr("id",`likes-total-${item.id}`)
+                    eventItem.find(".comment-section").attr("id", `comment-section-${item.id}`)
+                    eventItem.find(".prof").attr("src", `/pic/${sessionStorage.getItem("picture")}`)
+
+                    container.append(eventItem)
+                    
+                    // change the like status
+                    getLikeStatus(item.id)
+                    .then(status => {
+                        // change the like color
+                        status == true?$(`#like-${item.id}`).addClass("text-primary"):$(`#like-${item.id}`).removeClass("text-primary")
+                    })
+                    .catch(err => {
+                        console.log(err);
+                    });
+
+                    // get total likes
+                    $.ajax({
+                        method: "GET",
+                        url:"/api/client/counteventlikes",
+                        data:{
+                            eventid: item.id
+                        },
+                        success:res=>{
+                            $(`#likes-total-${item.id}`).text(res)
+                        }
+                    })
+
+                    // add a comment
+                    $(`#add-comment-${item.id}`).click(e=>{
+                        e.preventDefault()
+                        @* console.log($(`#comment-${item.id}`).val()) *@
+
+                        const comment = {
+                            UserId: parseInt(sessionStorage.getItem("ID")),
+                            EventId: item.id,
+                            Comment: $(`#comment-${item.id}`).val()
+                        }
+
+                        // save the comment to the database
+                        $.ajax({
+                            method:"POST",
+                            url:"/api/client/addeventcomment",
+                            data:{
+                                eventComment: comment
+                            },
+                            success:res=>{
+                                console.log(res)
+                                $(`#comment-${item.id}`).val()
+                            },
+                            error:err=>{
+                                console.log(err)
+                            }
+                        })
+                    })
+
+                    // get the number of comments for each event
+                    $.ajax({
+                        method:"GET",
+                        url:"/api/client/counteventcomments",
+                        data:{
+                            eventid:item.id
+                        },
+                        success:res=>{
+                            $(`#total-comments-${item.id}`).text(`${res} comments`)
+                            @* console.log(res) *@
+                        },
+                        error:err=>{
+                            console.log(err)
+                        }
+                    })
+
+                    // toggle comment section
+                    $(`#total-comments-${item.id}`).click(e=>{
+                        e.preventDefault()
+                        $(`#comment-section-${item.id}`).hasClass("hidden-comments")?
+                            $(`#comment-section-${item.id}`).removeClass("hidden-comments"):
+                            $(`#comment-section-${item.id}`).addClass("hidden-comments")
+                    })
+
+                    // add like
+                    $(`#like-${item.id}`).click(e=>{
+                        e.preventDefault()
+                        console.log(item.id)
+                        const like = {
+                            UserId: parseInt(sessionStorage.getItem("ID")),
+                            EventId: item.id,
+                            Status: true
+                        }
+                        // add like
+                        $.ajax({
+                            method:"POST",
+                            url:"/api/client/addeventlike",
+                            data:{
+                                eventLike:like
+                            },
+                            success:res=>{
+                                getLikeStatus(item.id)
+                                .then(status => {
+                                    // change the like color
+                                    status == true?$(`#like-${item.id}`).addClass("text-primary"):$(`#like-${item.id}`).removeClass("text-primary")
+                                })
+                                .catch(err => {
+                                    console.log(err);
+                                });
+                                console.log(status)
+                            },
+                            error:err=>{
+                                console.log(err)
+                            }
+                        })
+                        console.log("hello")
+                    })
+
+                    // get event comments
+                    $.ajax({
+                        method:"GET",
+                        url: "/api/client/geteventcomments",
+                        data:{
+                            eventid:item.id
+                        },
+                        success:res=>{
+                            const commentsTemp = $("#comment__temp").html()
+                            const commentsSection = $(`#comment-section-${item.id}`)
+                            res.forEach(comment=>{
+                                if(item.id === comment.eventId)
+                                {
+                                    const commentsItem = $(commentsTemp).clone()
+                                    commentsItem.find(".commentor").text(`${comment.firstName} ${comment.lastName}`)
+                                    commentsItem.find(".comments-item").text(comment.comment.comment)
+                                    commentsSection.append(commentsItem)
+                                }
+                            })
+                        },
+                        error:err=>{
+                            console.log(err)
+                        }
+                    })
+
+                })
+            },
+            error:err=>{
+                console.log(res)
+            }
+        })
+
+        // get like status
+        const getLikeStatus = (eventid) => {
+            // get the like status of the event
+            return new Promise((resolve, reject) => {
+                $.ajax({
+                    method: "GET",
+                    url: "/api/client/getlikestatus",
+                    data: {
+                        userid: parseInt(sessionStorage.getItem("ID")),
+                        eventid: eventid
+                    },
+                    success: res => {
+                        resolve(res)
+                    },
+                    error: err => {
+                        console.log(err)
+                        reject(err)
+                    }
+                })
+            })
+        }
+
+
+        // Get the credentials
+        $(".name").text(`${sessionStorage.getItem("firstName")} ${sessionStorage.getItem("lastName")}`)
+        $(".id").text(`Alumni ID ${sessionStorage.getItem("yearGraduated")}-${sessionStorage.getItem("ID")}`)
+        $(".job").text(`${sessionStorage.getItem("currentWork")}`)
+
+        var pictureUrl = `/pic/${sessionStorage.getItem("picture")}`;
+
+        $(".profile").attr("src", pictureUrl);
+        
+        
+    })
+    
+      function logout() {
+            window.location.href = "/";
+        }
+
+      
+                                      
+                            
+</script>
