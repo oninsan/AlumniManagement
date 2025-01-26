@@ -30,12 +30,8 @@ public partial class AlumniManagementContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        //optionsBuilder.UseSqlServer("Server=localhost;Database=alumni_management;Integrated Security=True;TrustServerCertificate=True;");
         //optionsBuilder.UseSqlServer("Server=WAR-MACHINE\\SQLEXPRESS;Database=alumni_management;Integrated Security=True;TrustServerCertificate=True;");
-        //optionsBuilder.UseSqlServer("Server=sql.bsite.net\\MSSQL2016;Database=alumnihub_;User Id=alumnihub_; password=admin; Integrated Security=True;TrustServerCertificate=True;");
         optionsBuilder.UseSqlServer("Server=sql.bsite.net\\MSSQL2016;Database=alumnihub_;User Id=alumnihub_;Password=admin;TrustServerCertificate=True;");
-
-        //optionsBuilder.UseMySql("server=localhost;database=alumni_management;user=root", Microsoft.EntityFrameworkCore.ServerVersion.Parse("10.4.28-mariadb"));
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
