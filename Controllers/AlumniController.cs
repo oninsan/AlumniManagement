@@ -10,17 +10,62 @@ using System.Security.Policy;
 using System.Net.Mail;
 using System.Net.Http;
 using System.Net;
+using System.Diagnostics;
+using AlumniManagement.Models;
 
 namespace AlumniManagement.Controllers
 {
     public class AlumniController : Controller
     {
         private readonly AlumniManagementContext _context;
+        private readonly ILogger<AlumniController> _logger;
 
-        public AlumniController(AlumniManagementContext context)
+        public AlumniController(AlumniManagementContext context, ILogger<AlumniController> logger)
         {
             _context = context;
+            _logger = logger;
         }
+
+        public async Task<IActionResult> AddEmploymentHistory(int? id)
+        {
+            if (id == null || _context.Alumni == null)
+            {
+                return NotFound();
+            }
+
+            var alumnus = await _context.Alumni
+                //.Include(a => a.EmploymentHistory)
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (alumnus == null)
+            {
+                return NotFound();
+            }
+
+            return View(alumnus);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AddEmploymentHistory(int id, List<EmploymentHistory> employmentHistories)
+        {
+            var alumnus = await _context.Alumni.FirstOrDefaultAsync(a => a.Id == id);
+            if (alumnus == null)
+            {
+                return NotFound();
+            }
+
+            foreach (var employmentHistory in employmentHistories)
+            {
+                employmentHistory.UserId = alumnus.Id;
+                _context.EmploymentHistories.Add(employmentHistory);
+            }
+
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Index)); 
+        }
+
+
 
         // GET: Alumni
         public async Task<IActionResult> Index(string course, int? yearGraduated, string department)
@@ -47,6 +92,9 @@ namespace AlumniManagement.Controllers
                           Problem("Entity set 'AlumniManagementContext.Alumni'  is null.");
         }
 
+        
+
+
         // GET: Alumni/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -55,15 +103,31 @@ namespace AlumniManagement.Controllers
                 return NotFound();
             }
 
+            // Fetch the Alumnus details
             var alumnus = await _context.Alumni
                 .FirstOrDefaultAsync(m => m.Id == id);
+
             if (alumnus == null)
             {
                 return NotFound();
             }
 
-            return View(alumnus);
+            // Fetch the EmploymentHistory for this alumnus
+            var employmentHistory = await _context.EmploymentHistories
+                .Where(e => e.UserId == id)  
+                .ToListAsync();
+
+            // Create a ViewModel to pass both the Alumnus and EmploymentHistory to the view
+            var model = new AlumnusDetailsViewModel
+            {
+                Alumnus = alumnus,
+                EmploymentHistory = employmentHistory
+            };
+
+            return View(model);
         }
+
+
 
         // GET: Alumni/Create
         public IActionResult Create()
@@ -78,12 +142,14 @@ namespace AlumniManagement.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,FirstName,LastName,Username,Role,Password,CourseGraduated,Department,YearGraduated,WorkingStatus,CurrentWork, MobileNumber, Email, Picture")] Alumnus alumnus)
         {
+           
             if (ModelState.IsValid)
             {
                 alumnus.ConfirmationStatus = 0;
 
                 _context.Add(alumnus);
                 await _context.SaveChangesAsync();
+
                 //Email sending
                 var emailContent = "Hello " + alumnus.FirstName + "<br>Greetings from Alumni Management" +
                                   "<br>Your username is: " + alumnus.Username + "<br>Your password is: " + alumnus.Password 

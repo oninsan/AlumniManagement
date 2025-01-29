@@ -28,6 +28,8 @@ public partial class AlumniManagementContext : DbContext
 
     public virtual DbSet<EventLike> EventLikes { get; set; }
 
+    public virtual DbSet<EmploymentHistory> EmploymentHistories { get; set; }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         //optionsBuilder.UseSqlServer("Server=WAR-MACHINE\\SQLEXPRESS;Database=alumni_management;Integrated Security=True;TrustServerCertificate=True;");
@@ -42,7 +44,6 @@ public partial class AlumniManagementContext : DbContext
 
         modelBuilder.Entity<Alumnus>(entity =>
         {
-            //entity.HasKey(e => e.Id).HasName("PRIMARY");
             entity.HasKey(e => e.Id).HasName("PK_Alumni");
             entity.ToTable("alumni");
 
@@ -91,6 +92,34 @@ public partial class AlumniManagementContext : DbContext
                 .HasConversion<int>()
                 .HasColumnName("confirmation_status")
                 .HasDefaultValueSql("0");
+        });
+
+        modelBuilder.Entity<EmploymentHistory>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK_EmploymentHistory");
+            entity.ToTable("employment_history");
+
+            entity.Property(e => e.Id)
+                .HasColumnType("int")
+                .HasColumnName("id");
+            entity.Property(e => e.CompanyName)
+                .HasMaxLength(100)
+                .HasColumnName("company_name");
+            entity.Property(e => e.Position)
+                .HasMaxLength(100)
+                .HasColumnName("position");
+            entity.Property(e => e.StartDate)
+                .HasColumnType("date")
+                .HasColumnName("start_date");
+            entity.Property(e => e.EndDate)
+                .HasColumnType("date")
+                .HasColumnName("end_date");
+            entity.Property(e => e.JobDescription)
+                .HasMaxLength(2000)
+                .HasColumnName("job_description");
+            entity.Property(e => e.UserId)
+                 .HasColumnType("int")
+                 .HasColumnName("user_id");
         });
 
         modelBuilder.Entity<Announcement>(entity =>

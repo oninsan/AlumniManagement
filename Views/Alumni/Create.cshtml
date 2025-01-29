@@ -10,7 +10,7 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form asp-action="Create" method="post">
             <input type="hidden" value="profile.png" asp-for="Picture" class="form-control" />
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
@@ -91,6 +91,10 @@
                 <input asp-for="Email" class="form-control" />
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
+
+            
+
+
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
@@ -105,20 +109,6 @@
 <footer class="footer text-center"> 2021 © Alumni Management brought to you by <a
     href="https://www.wrappixel.com/">wrappixel.com</a>
 </footer>
-@* <script src="~/lib/jquery/dist/jquery.min.js"></script>
-<script src="~/js/app-style-switcher.js"></script>
-<script src="~/plugins/bower_components/jquery-sparkline/jquery.sparkline.min.js"></script>
-<!--Wave Effects -->
-<script src="~/js/waves.js"></script>
-<!--Menu sidebar -->
-<script src="~/js/sidebarmenu.js"></script>
-<!--Custom JavaScript -->
-<script src="~/js/custom.js"></script>
-<!--This page JavaScript -->
-<!--chartis chart-->
-<script src="~/plugins/bower_components/chartist/dist/chartist.min.js"></script>
-<script src="~/plugins/bower_components/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js"></script>
-<script src="~/js/pages/dashboards/dashboard1.js"></script> *@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

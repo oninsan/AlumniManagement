@@ -5,7 +5,7 @@
 }
 
 <style>
-    input[type='checkbox'] { 
+    input[type='checkbox'] {
         width: 1.5rem !important;
         height: 1.5rem !important;
     }
@@ -16,7 +16,9 @@
 <p>
     <a class="btn btn-secondary" asp-action="Create">Create New</a>
 </p>
-
+@* <p>
+    <a class="btn btn-secondary" asp-action="AddEmploymentHistory">Add Employment History</a>
+</p> *@
 
 
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#filterModal">
@@ -113,51 +115,54 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.FirstName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LastName)
-            </td>
-            @* <td>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                @* <td>
                 @Html.DisplayFor(modelItem => item.Username)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Password)
             </td> *@
-            <td>
-                @Html.DisplayFor(modelItem => item.CourseGraduated)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.YearGraduated)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.WorkingStatus)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CurrentWork)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Role)
-            </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CourseGraduated)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.YearGraduated)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.WorkingStatus)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CurrentWork)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Role)
+                </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.ConfirmationStatus)
                 </td>
-            <td>
-                @* <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <td>
+                    @* <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.Id">Delete</a> *@
-
-                <a asp-action="Details" asp-controller="Alumni" class="btn btn-primary" asp-route-id="@item.Id">Details</a>
-                <a asp-action="Edit" asp-controller="Alumni" class="btn btn-success" asp-route-id="@item.Id">Edit</a>
-            </td>
-        </tr>
-}
+                    <a asp-controller="Alumni" asp-action="AddEmploymentHistory" class="btn btn-primary"
+                        asp-route-id="@item.Id">History</a>
+                    <a asp-action="Details" asp-controller="Alumni" class="btn btn-primary"
+                        asp-route-id="@item.Id">Details</a>
+                    <a asp-action="Edit" asp-controller="Alumni" class="btn btn-success" asp-route-id="@item.Id">Edit</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
 
 <footer class="footer text-center"> 2021 © Alumni Management brought to you by <a
-    href="https://www.wrappixel.com/">wrappixel.com</a>
+        href="https://www.wrappixel.com/">wrappixel.com</a>
 </footer>

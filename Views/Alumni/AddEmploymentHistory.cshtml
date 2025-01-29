@@ -1,0 +1,73 @@
+﻿@model AlumniManagement.Entities.Alumnus
+
+@{
+    ViewData["Title"] = "Add Employment History";
+}
+
+<h1>Add Employment History for @Model.FirstName @Model.LastName</h1>
+
+<form method="post" asp-action="AddEmploymentHistory" asp-route-id="@Model.Id">
+    <div id="employmentHistoryContainer">
+        <!-- Dynamic Employment History Entries will be added here -->
+    </div>
+
+    <button type="button" id="addEmploymentBtn" class="btn btn-secondary">Add Employment</button>
+
+    <button type="submit" class="btn btn-primary">Save Employment History</button>
+</form>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+<footer class="footer text-center">
+    2021 © Alumni Management brought to you by <a href="https://www.wrappixel.com/">wrappixel.com</a>
+</footer>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+<script>
+    // JavaScript to dynamically add Employment History fields
+    document.getElementById("addEmploymentBtn").addEventListener("click", function () {
+        const employmentEntry = document.createElement("div");
+        employmentEntry.classList.add("employment-entry");
+
+        const employmentCount = document.querySelectorAll(".employment-entry").length; // Count existing entries
+
+        employmentEntry.innerHTML = `
+            <div class="form-group">
+                <label>Company Name</label>
+                <input type="text" name="EmploymentHistories[${employmentCount}].CompanyName" class="form-control" required />
+            </div>
+            <div class="form-group">
+                <label>Job Title</label>
+                <input type="text" name="EmploymentHistories[${employmentCount}].Position" class="form-control" required />
+            </div>
+            <div class="form-group">
+                <label>Start Date</label>
+                <input type="date" name="EmploymentHistories[${employmentCount}].StartDate" class="form-control" required />
+            </div>
+            <div class="form-group">
+                <label>End Date</label>
+                <input type="date" name="EmploymentHistories[${employmentCount}].EndDate" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label>Job Description</label>
+                <textarea name="EmploymentHistories[${employmentCount}].JobDescription" class="form-control" required></textarea>
+            </div>
+            <button type="button" class="btn btn-danger removeEmploymentBtn">Remove</button>
+            <hr />
+        `;
+
+        document.getElementById("employmentHistoryContainer").appendChild(employmentEntry);
+
+        // Add event listener to remove the employment entry
+        employmentEntry.querySelector(".removeEmploymentBtn").addEventListener("click", function () {
+            employmentEntry.remove();
+        });
+    });
+</script>

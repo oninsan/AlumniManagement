@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AlumniManagement.Migrations
 {
     [DbContext(typeof(AlumniManagementContext))]
-    [Migration("20250126085144_50to100")]
-    partial class _50to100
+    [Migration("20250127021213_AddEmploymentHistory")]
+    partial class AddEmploymentHistory
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -184,6 +184,51 @@ namespace AlumniManagement.Migrations
                         .HasName("PK_AnnouncementComment");
 
                     b.ToTable("announcement_comment", (string)null);
+                });
+
+            modelBuilder.Entity("AlumniManagement.Entities.EmploymentHistory", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("id");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("CompanyName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)")
+                        .HasColumnName("company_name");
+
+                    b.Property<DateTime?>("EndDate")
+                        .HasColumnType("date")
+                        .HasColumnName("end_date");
+
+                    b.Property<string>("JobDescription")
+                        .IsRequired()
+                        .HasMaxLength(2000)
+                        .HasColumnType("nvarchar(2000)")
+                        .HasColumnName("job_description");
+
+                    b.Property<string>("Position")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)")
+                        .HasColumnName("position");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("date")
+                        .HasColumnName("start_date");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int")
+                        .HasColumnName("user_id");
+
+                    b.HasKey("Id")
+                        .HasName("PK_EmploymentHistory");
+
+                    b.ToTable("employment_history", (string)null);
                 });
 
             modelBuilder.Entity("AlumniManagement.Entities.Event", b =>

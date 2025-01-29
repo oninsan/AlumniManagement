@@ -11,6 +11,7 @@ public enum ConfirmationStatus
     Confirmed = 2  // 2
 }
 
+
 public partial class Alumnus
 {
     public int Id { get; set; }
@@ -42,4 +43,5 @@ public partial class Alumnus
     public string Picture { get; set; } = null!;
 
     public ConfirmationStatus ConfirmationStatus { get; set; } = ConfirmationStatus.Pending;
+
 }
