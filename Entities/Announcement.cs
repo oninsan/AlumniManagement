@@ -11,5 +11,7 @@ public partial class Announcement
 
     public string AnnouncementDescription { get; set; } = null!;
 
+    public string AnnouncementImagePath { get; set; } = null!;
+
     public DateTime DateCreated { get; set; }
 }

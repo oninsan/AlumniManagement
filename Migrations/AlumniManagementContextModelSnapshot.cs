@@ -136,6 +136,10 @@ namespace AlumniManagement.Migrations
                         .HasColumnType("nvarchar(2000)")
                         .HasColumnName("announcement_description");
 
+                    b.Property<string>("AnnouncementImagePath")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("AnnouncementTitle")
                         .IsRequired()
                         .HasMaxLength(100)
