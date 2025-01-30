@@ -30,11 +30,13 @@ public partial class AlumniManagementContext : DbContext
 
     public virtual DbSet<EmploymentHistory> EmploymentHistories { get; set; }
 
+    // protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    // {
+    //     //optionsBuilder.UseSqlServer("Server=WAR-MACHINE\\SQLEXPRESS;Database=alumni_management;Integrated Security=True;TrustServerCertificate=True;");
+    //     optionsBuilder.UseSqlServer("Server=sql.bsite.net\\MSSQL2016;Database=alumnihub_;User Id=alumnihub_;Password=admin;TrustServerCertificate=True;");
+    // }
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-        //optionsBuilder.UseSqlServer("Server=WAR-MACHINE\\SQLEXPRESS;Database=alumni_management;Integrated Security=True;TrustServerCertificate=True;");
-        optionsBuilder.UseSqlServer("Server=sql.bsite.net\\MSSQL2016;Database=alumnihub_;User Id=alumnihub_;Password=admin;TrustServerCertificate=True;");
-    }
+        => optionsBuilder.UseSqlServer("Server=DESKTOP-PAAQDTO\\SQLEXPRESS;Database=alumni_management;TrustServerCertificate=true;Trusted_Connection=True;Integrated Security=True");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
